@@ -1,25 +1,30 @@
-language: node_js
-# 指定node_js版本
-node_js: 
-  - lts/*
-cache:	# 缓存，提高下次构建的效率
- 
-  directories:
-    - node_modules
-
-install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相关文档）
-  - npm install
-
-script:    # 执行构建阶段
-  - hexo clean    # hexo 的清理命令
-  - hexo generate    # hexo 的生成（构建）命令，即最核心的生成静态文件过程
-# GitHub Pages Deployment
-deploy:    # 部署阶段
-  provider: pages    # 约定 pages 为 GitHub Pages 服务，必须且不可更改
-  skip-cleanup: true  # 必须跳过清理，否则过程中生成的文件（要发布的静态资源）会被清理
-  github-token: $GITHUB_TOKEN  # 部署时使用的 token
-  keep-history: false   # 设置为 false 时，使用 `git push --force` 命令覆盖历史记录
-  on:
-    branch: hexo    # 仅监听 master 分支的变化，才执行构建
-  target-branch: master   # 用于存放静态资源的分支
-  local-dir: public   # `hexo generate` 命令生成的静态资源所在路径
+language: node_js   #设置语言
+node_js: stable     #设置相应的版本
+cache:
+    directories:
+        - node_modules    #据说可以减少travis构建时间
+before_install:
+  - npm install -g hexo
+  - npm install -g hexo-cli
+install:
+  - npm install   #安装hexo及插件
+before_script:
+  - npm install -g mocha
+  - git clone --branch master https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git public
+script:
+  - hexo cl   #清除
+  - hexo g   #生成
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "JoshuaZZZs"   #修改成自己的github用户名
+  - git config user.email "15979089154@189.cn"   #修改成自己的GitHub邮箱
+  - git add .
+  - git commit -m "update by Travis-CI"
+  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:master #GH_token就是在travis中设置的token
+branches:
+  only:
+  - hexo  #只监测这个分支，一有动静就开始构建
+env:
+    global:
+        - GH_REF: github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
