@@ -1,17 +1,11 @@
 language: node_js
-sudo: required
 # 指定node_js版本
-# nodejs版本
-node_js:
-  - 8.11.1
+node_js: 
+  - lts/*
 cache:	# 缓存，提高下次构建的效率
-  yarn: true
+ 
   directories:
     - node_modules
-
-before_install:
-  - npm install -g hexo-cli
-  - chmod +x ./run_d.sh
 
 install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相关文档）
   - npm install
@@ -19,10 +13,10 @@ install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相�
 script:    # 执行构建阶段
   - hexo clean    # hexo 的清理命令
   - hexo generate    # hexo 的生成（构建）命令，即最核心的生成静态文件过程
-  - sed -i "s/GITHUB_TOKEN/${GITHUB_TOKEN}/g" ./_config.yml
   - hexo deploy
 # GitHub Pages Deployment
 deploy:    # 部署阶段
+  provider: pages    # 约定 pages 为 GitHub Pages 服务，必须且不可更改
   skip-cleanup: true  # 必须跳过清理，否则过程中生成的文件（要发布的静态资源）会被清理
   github-token: $GITHUB_TOKEN  # 部署时使用的 token
   keep-history: false   # 设置为 false 时，使用 `git push --force` 命令覆盖历史记录
@@ -30,8 +24,3 @@ deploy:    # 部署阶段
     branch: hexo    # 仅监听 master 分支的变化，才执行构建
   target-branch: master   # 用于存放静态资源的分支
   local-dir: public   # `hexo generate` 命令生成的静态资源所在路径
-
-
-
-
-
