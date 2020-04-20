@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 
 
-<html lang="zh-CN" >
+<html lang="zh-CN">
 
 
 <head>
   <meta charset="utf-8" />
-    
+   
+  <meta name="keywords" content="“前端,摄影,博客,代码,思考,生活”" />
+   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-     期
+     预
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -19,10 +21,15 @@
 <link rel="stylesheet" href="/dist/main.css">
 
   
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
 <link rel="stylesheet" href="/css/custom.css">
 
   
-  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
   
   
 
@@ -43,7 +50,7 @@
       <img src="/images/cover2.jpg" alt="image frame" />
     </div>
     <div class="cover-inner text-center text-white">
-      <h1><a href="/">期</a></h1>
+      <h1><a href="/">预</a></h1>
       <div id="subtitle-box">
         
           <span id="subtitle">望生命所遇 皆可如期</span>
@@ -76,7 +83,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/01/10/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/"
+  <a class="article-title" href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/"
     >ES6语法总结(四)</a> 
 </h2>
  
@@ -86,8 +93,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/10/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/" class="article-date">
-  <time datetime="2020-01-10T11:25:24.000Z" itemprop="datePublished">2020-01-10</time>
+      <a href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/" class="article-date">
+  <time datetime="2020-01-20T10:54:12.000Z" itemprop="datePublished">2020-01-20</time>
 </a>
       
   <div class="article-category">
@@ -108,17 +115,15 @@
       
 
       
-      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="Promise与异步"><a href="#Promise与异步" class="headerlink" title="Promise与异步"></a>Promise与异步</h2><h4 id="Promise诞生的原因"><a href="#Promise诞生的原因" class="headerlink" title="Promise诞生的原因"></a>Promise诞生的原因</h4><p>前端和后端各种多样化交互才使各种程序拥有了使用的实际价值，而前后端交互绝大部分都属于异步编程，所以了解异步是对于前端来说是异常重要的一步，接下来先看一下传统的异步</p>
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="Promise与异步"><a href="#Promise与异步" class="headerlink" title="Promise与异步"></a>Promise与异步</h2><h3 id="Promise诞生的原因"><a href="#Promise诞生的原因" class="headerlink" title="Promise诞生的原因"></a>Promise诞生的原因</h3><p>前端和后端各种多样化交互才使各种程序拥有了使用的实际价值，而前后端交互绝大部分都属于异步编程，所以了解异步是对于前端来说是异常重要的一步，接下来先看一下传统的异步</p>
 <ul>
 <li><p><strong>传统的异步</strong>：</p>
 <ul>
 <li>事件模型</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span><br><span class="line">    button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中就是事件模型的一种，给id为<code>btn</code>的dom元素绑定了一个点击方法，但是它只会被编译而不会被执行，只有当该元素被点击之后才会js引擎才会把click的方法加入到作业队列的末尾，而所有类似这种绑定特定事件只有在特定条件下才会执行的模式叫做事件模式，这也是异步的一种。</p>
       
-      <a class="article-more-link" href="/2020/01/10/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -158,7 +163,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/12/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/"
+  <a class="article-title" href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/"
     >ES6语法总结(三)</a> 
 </h2>
  
@@ -168,8 +173,8 @@
 
     
     <div class="article-meta">
-      <a href="/2019/12/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/" class="article-date">
-  <time datetime="2019-12-20T09:45:01.000Z" itemprop="datePublished">2019-12-20</time>
+      <a href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/" class="article-date">
+  <time datetime="2020-01-05T10:54:12.000Z" itemprop="datePublished">2020-01-05</time>
 </a>
       
   <div class="article-category">
@@ -194,10 +199,8 @@
 <h3 id="对象解构："><a href="#对象解构：" class="headerlink" title="对象解构："></a>对象解构：</h3><ul>
 <li><p><strong>简单的解构</strong>:先从一段代码说起</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> man = &#123;</span><br><span class="line">age: <span class="string">"23"</span>,</span><br><span class="line">name: <span class="string">"zhoushuang"</span></span><br><span class="line">&#125;,</span><br><span class="line">age: <span class="string">"24"</span>,</span><br><span class="line">name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="comment">// 使用解构来分配不同的值</span></span><br><span class="line">(&#123; age, name &#125; = man);<span class="comment">//解构表达式</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">// "23"</span></span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// "zhoushuang"</span></span><br></pre></td></tr></table></figure>
-
-<p>在这个例子中 age与 name 属性在声明时被初始化，而两个同名变量也被声明并初始化为不同的值。接下来一行使用了解构表达式，通过读取 man对象来更改这两个变量的值。在这里必须用<strong>圆括号包裹解构赋值语句</strong>，这是因为暴露的花括号会被解析为代码块语句，而块语句不允许在赋值操作符左侧出现。圆括号标示了里面的花括号并不是块语句、而应该被解释为表达式，从而允许完成赋值操作。</p>
       
-      <a class="article-more-link" href="/2019/12/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/">阅读更多...</a>
+      <a class="article-more-link" href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -279,6 +282,7 @@
 <p>在这种系统中，图像由一个像素数组组成，这个数组里面的每一个像素都会用图形对应位置的RGB值表示，可以认为在一个图像上划分出N个正方形小方块，每一个小方块的值都等于图像在该位置的颜色，且改颜色用RBG的形式表示</p>
 </li>
 <li><p>矢量图形</p>
+<p>在这种系统中，图像由一组几何图形的指令组成，矢量阅读器会按照指令在对应的指标集上绘制出一系列对应的图形。可以把图像切割成了N个几何图形，每一个图形都会记录相关的坐标，坐标间的连接顺序，方法等要素从而生成完成这个图形的指令，阅读器就会根据这些指令画出一个个几何图形最后形成完整的图像</p>
       
       <a class="article-more-link" href="/2019/12/07/%E6%B5%85%E8%B0%88SVG/">阅读更多...</a>
       
@@ -320,7 +324,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/25/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/"
+  <a class="article-title" href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/"
     >ES6语法总结(二)</a> 
 </h2>
  
@@ -330,8 +334,8 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/25/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/" class="article-date">
-  <time datetime="2019-10-25T11:21:50.000Z" itemprop="datePublished">2019-10-25</time>
+      <a href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/" class="article-date">
+  <time datetime="2019-11-21T10:54:12.000Z" itemprop="datePublished">2019-11-21</time>
 </a>
       
   <div class="article-category">
@@ -352,14 +356,11 @@
       
 
       
-      <h1 id="ES6法语总结"><a href="#ES6法语总结" class="headerlink" title="ES6法语总结"></a>ES6法语总结</h1><h2 id="对象-Object"><a href="#对象-Object" class="headerlink" title="对象(Object)"></a>对象(Object)</h2><ul>
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="对象-Object"><a href="#对象-Object" class="headerlink" title="对象(Object)"></a>对象(Object)</h2><ul>
 <li><p><strong>属性初始化器速记</strong>：在ES6中当对象字面量中的属性只有名称时， JS 引擎会在周边作用域查找同名变量。若找到，该变量的值将会被赋给对象字面量的同名属性。所以当属性和值相同时可以只写一个名称例：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name,</span><br><span class="line">        age</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>方法简写</strong>:在ES6为字面量定义函数时必须指定一个名称并用完整的函数定义来为对象添加方法，在ES6中也将其做了优化</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">name: <span class="string">"zhoushaung"</span>,</span><br><span class="line">sayName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//es5 </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">sayName()&#123;<span class="comment">//es6 </span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-      <a class="article-more-link" href="/2019/10/25/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/">阅读更多...</a>
+      <a class="article-more-link" href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -399,7 +400,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2019/10/13/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/"
+  <a class="article-title" href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/"
     >ES6语法总结(一)</a> 
 </h2>
  
@@ -409,8 +410,8 @@
 
     
     <div class="article-meta">
-      <a href="/2019/10/13/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/" class="article-date">
-  <time datetime="2019-10-13T11:21:50.000Z" itemprop="datePublished">2019-10-13</time>
+      <a href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/" class="article-date">
+  <time datetime="2019-10-11T09:22:55.000Z" itemprop="datePublished">2019-10-11</time>
 </a>
       
   <div class="article-category">
@@ -431,12 +432,10 @@
       
 
       
-      <h1 id="ES6法语总结"><a href="#ES6法语总结" class="headerlink" title="ES6法语总结"></a>ES6法语总结</h1><h2 id="块级绑定（let-，var，const）"><a href="#块级绑定（let-，var，const）" class="headerlink" title="块级绑定（let ，var，const）"></a>块级绑定（<em>let ，var，const</em>）</h2><h3 id="传统var的问题（变量提升，块级作用域）"><a href="#传统var的问题（变量提升，块级作用域）" class="headerlink" title="传统var的问题（变量提升，块级作用域）"></a>传统var的问题（<em>变量提升，块级作用域</em>）</h3><p>var是用来声明各类型变量的关键字，但存在一个问题–<strong>变量提升</strong>（<em>在当前作用域内使用var关键词声明的变量都会提升到当前作用域的顶部</em>）例:</p>
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="块级绑定（let-，var，const）"><a href="#块级绑定（let-，var，const）" class="headerlink" title="块级绑定（let ，var，const）"></a>块级绑定（<em>let ，var，const</em>）</h2><h3 id="传统var的问题（变量提升，块级作用域）"><a href="#传统var的问题（变量提升，块级作用域）" class="headerlink" title="传统var的问题（变量提升，块级作用域）"></a>传统var的问题（<em>变量提升，块级作用域</em>）</h3><p>var是用来声明各类型变量的关键字，但存在一个问题–<strong>变量提升</strong>（<em>在当前作用域内使用var关键词声明的变量都会提升到当前作用域的顶部</em>）例:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line"><span class="keyword">var</span> value = <span class="string">"blue"</span>;</span><br><span class="line"><span class="comment">// 其他代码</span></span><br><span class="line"><span class="keyword">return</span> value;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这里可以很明显的知道value虽然定义在了if为真后的语句块中但事实上在整个函数内部都能访问的到，这段代码实际上相当于</p>
       
-      <a class="article-more-link" href="/2019/10/13/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/">阅读更多...</a>
+      <a class="article-more-link" href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/">阅读更多...</a>
       
       
       <!-- reward -->
@@ -450,6 +449,90 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-HelloShips" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/10/06/HelloShips/"
+    >Hello Ships</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/10/06/HelloShips/" class="article-date">
+  <time datetime="2019-10-06T14:45:18.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="Hello-Ships"><a href="#Hello-Ships" class="headerlink" title="Hello Ships"></a>Hello Ships</h1><p>折腾了两天，终于把这个博客搭起来了，感谢过程中给我帮助的文字和人儿们</p>
+<p>第一次输入完localhost:4000看到生成的页面，突然有种很复杂的恍惚，就像是在海上常年冲浪的人找到了一个小岛，然后得到了一个海螺</p>
+<p>至此,</p>
+<p>这个海边独居的人可以把自己的思绪写成旋律</p>
+<p>吹进海螺里  </p>
+<p>偶尔有路过的航船听到</p>
+<p>鸣笛致意</p>
+<p>大家相视一笑</p>
+<p>挥挥手 </p>
+<p>然后各自离开</p>
+<p>奔赴下一场相遇</p>
+<p>我很喜欢这种感觉</p>
+<p>Hello Ships~</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hello-Ships/" rel="tag">Hello Ships</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li></ul>
 
 
     </footer>
@@ -555,32 +638,34 @@
 
       <footer class="footer">
   <div class="outer">
-    <ul class="list-inline">
+    <ul>
       <li>
-        &copy;
+        Copyrights &copy;
         2015-2020
-        zhou shuang
+        <i class="ri-heart-fill heart_icon"></i> zhou shuang
       </li>
+    </ul>
+    <ul>
       <li>
-        
-        Powered by
-        
-        
-        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
         
       </li>
     </ul>
-    <ul class="list-inline">
+    <ul>
       <li>
         
         
         <span>
-  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
-  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
 </span>
         
       </li>
+    </ul>
+    <ul>
       
+    </ul>
+    <ul>
       <li>
         <!-- cnzz统计 -->
         
@@ -604,7 +689,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="期"></a>
+    <a href="/"><img src="/images/ayer-side.svg" alt="预"></a>
   </div>
   
   <ul class="nav nav-main">
@@ -626,11 +711,7 @@
     </li>
     
     <li class="nav-item">
-      <a class="nav-item-link" href="/tags/%5C%E6%91%84%E5%BD%B1/">摄影</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于我</a>
+      <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1/">摄影</a>
     </li>
     
   </ul>
