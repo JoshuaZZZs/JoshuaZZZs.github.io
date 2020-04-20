@@ -11,7 +11,7 @@ install:
   - npm install   #安装hexo及插件
 before_script:
   - npm install -g mocha
-  - git clone --branch master https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git public
+  - git clone --branch hexo https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
 script:
   - hexo cl   #清除
   - hexo g   #生成
