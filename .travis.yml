@@ -1,31 +1,30 @@
-language: node_js   #设置语言
+language: node_js
+node_js: stable
 sudo: required # 需要管理员权限
-node_js: stable     #设置相应的版本
-cache:
-    directories:
-        - node_modules    #据说可以减少travis构建时间
-before_install:
-  - npm install  hexo
-  - npm install  hexo-cli
+# S: Build Lifecycle
 install:
-  - npm install   #安装hexo及插件
-before_script:
-  - npm install -g mocha
-  - git clone --branch hexo https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
+  - npm install
+
+
+#before_script:
+ # - npm install -g gulp
+
 script:
-  - hexo cl   #清除
-  - hexo g   #生成
+  - hexo g
+
 after_script:
   - cd ./public
   - git init
-  - git config user.name "JoshuaZZZs"   #修改成自己的github用户名
-  - git config user.email "15979089154@189.cn"   #修改成自己的GitHub邮箱
+  - git config user.name "JoshuaZZZs"
+  - git config user.email "15979089154@189.cn"
   - git add .
-  - git commit -m "update by Travis-CI"
-  - git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:master #GH_token就是在travis中设置的token
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+# E: Build LifeCycle
+
 branches:
   only:
-  - hexo  #只监测这个分支，一有动静就开始构建
+    - hexo
 env:
-    global:
-        - GH_REF: github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
+ global:
+   - GH_REF:  github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
