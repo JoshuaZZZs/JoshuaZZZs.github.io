@@ -98,8 +98,10 @@ theme: ayer
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
-
+  type: git
+  repo: git@github.com:JoshuaZZZs/JoshuaZZZs.github.io.git
+  branch: hexo
+  message: '更新'
   # hexo-generator-searchdb
   
 search:
