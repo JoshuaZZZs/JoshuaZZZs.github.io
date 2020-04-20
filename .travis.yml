@@ -8,9 +8,6 @@ cache:	# 缓存，提高下次构建的效率
   yarn: true
   directories:
     - node_modules
-
-before_install:
-  - npm install -g hexo-cli
   
 install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相关文档）
   - npm install
