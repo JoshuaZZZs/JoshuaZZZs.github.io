@@ -1,21 +1,23 @@
+  
 language: node_js
 node_js: stable
-sudo: required # 需要管理员权限
+
 # S: Build Lifecycle
 install:
   - npm install
 
-
 #before_script:
  # - npm install -g gulp
+
 script:
+  - hexo clean
   - hexo g
 
 after_script:
   - cd ./public
   - git init
-  - git config user.name "JoshuaZZZs"
-  - git config user.email "15979089154@189.cn"
+  - git config user.name "JoshuaZZZs" # --{GitHub账户名称}
+  - git config user.email "15979089154@189.cn" #--{Github账户邮箱}
   - git add .
   - git commit -m "Update docs"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
@@ -23,7 +25,7 @@ after_script:
 
 branches:
   only:
-    - hexo
+    - hexo #--{Hexo源码分支名称}
 env:
  global:
-   - GH_REF:  github.com/JoshuaZZZs/JoshuaZZZs.github.io.git
+   - GH_REF:  github.com/JoshuaZZZs/JoshuaZZZs.github.io.git # --{仓库地址}
