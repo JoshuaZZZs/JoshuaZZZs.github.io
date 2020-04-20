@@ -4,12 +4,12 @@ cache:
     directories:
         - node_modules    #据说可以减少travis构建时间
 before_install:
-  - npm install -g hexo
-  - npm install -g hexo-cli
+  - sudo npm install -g hexo
+  - sudo npm install -g hexo-cli
 install:
-  - npm install   #安装hexo及插件
+  - sudo npm install   #安装hexo及插件
 before_script:
-  - npm install -g mocha
+  - sudo npm install -g mocha
   - git clone --branch master https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git public
 script:
   - hexo cl   #清除
