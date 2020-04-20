@@ -11,8 +11,8 @@ install:
 
 
 script:
-  - hexo clean
-  - hexo g
+  - chmod +x hexo clean
+  - chmod +x hexo g
 
 after_script:
   - cd ./public
