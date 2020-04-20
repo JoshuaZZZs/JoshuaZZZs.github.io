@@ -1,13 +1,14 @@
 language: node_js   #设置语言
+sudo: required # 需要管理员权限
 node_js: stable     #设置相应的版本
 cache:
     directories:
         - node_modules    #据说可以减少travis构建时间
 before_install:
-  - sudo npm install -g hexo
-  - sudo npm install -g hexo-cli
+  - sudo npm install  hexo
+  - sudo npm install  hexo-cli
 install:
-  - sudo npm install   #安装hexo及插件
+  - npm install   #安装hexo及插件
 before_script:
   - sudo npm install -g mocha
   - git clone --branch master https://github.com/JoshuaZZZs/JoshuaZZZs.github.io.git public
