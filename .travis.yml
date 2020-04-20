@@ -13,7 +13,6 @@ install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相�
 script:    # 执行构建阶段
   - hexo clean    # hexo 的清理命令
   - hexo generate    # hexo 的生成（构建）命令，即最核心的生成静态文件过程
-  - hexo deploy
 # GitHub Pages Deployment
 deploy:    # 部署阶段
   provider: pages    # 约定 pages 为 GitHub Pages 服务，必须且不可更改
