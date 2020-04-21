@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="“前端,摄影,博客,代码,思考,生活”" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+     预
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover2.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">预</a></h1>
+      <div id="subtitle-box">
+        
+          <span id="subtitle">望生命所遇 皆可如期</span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<div id="main">
+  <section class="outer">
+  <article class="articles">
+    
+    
+    
+    
+    <article id="post-ES6语法总结四(迭代生成器、Promise和异步)" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/"
+    >ES6语法总结(四)</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/" class="article-date">
+  <time datetime="2020-01-20T10:54:12.000Z" itemprop="datePublished">2020-01-20</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="Promise与异步"><a href="#Promise与异步" class="headerlink" title="Promise与异步"></a>Promise与异步</h2><h3 id="Promise诞生的原因"><a href="#Promise诞生的原因" class="headerlink" title="Promise诞生的原因"></a>Promise诞生的原因</h3><p>前端和后端各种多样化交互才使各种程序拥有了使用的实际价值，而前后端交互绝大部分都属于异步编程，所以了解异步是对于前端来说是异常重要的一步，接下来先看一下传统的异步</p>
+<ul>
+<li><p><strong>传统的异步</strong>：</p>
+<ul>
+<li>事件模型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span><br><span class="line">    button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/01/20/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E5%9B%9B(%E8%BF%AD%E4%BB%A3%E7%94%9F%E6%88%90%E5%99%A8%E3%80%81Promise%E5%92%8C%E5%BC%82%E6%AD%A5)/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-ES6语法总结三(解构、Set和Map)" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/"
+    >ES6语法总结(三)</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/" class="article-date">
+  <time datetime="2020-01-05T10:54:12.000Z" itemprop="datePublished">2020-01-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><p>从对象或数组中获取信息、并将特定数据存入本地变量</p>
+<h3 id="对象解构："><a href="#对象解构：" class="headerlink" title="对象解构："></a>对象解构：</h3><ul>
+<li><p><strong>简单的解构</strong>:先从一段代码说起</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> man = &#123;</span><br><span class="line">age: <span class="string">"23"</span>,</span><br><span class="line">name: <span class="string">"zhoushuang"</span></span><br><span class="line">&#125;,</span><br><span class="line">age: <span class="string">"24"</span>,</span><br><span class="line">name = <span class="string">"zs"</span>;</span><br><span class="line"><span class="comment">// 使用解构来分配不同的值</span></span><br><span class="line">(&#123; age, name &#125; = man);<span class="comment">//解构表达式</span></span><br><span class="line"><span class="built_in">console</span>.log(age); <span class="comment">// "23"</span></span><br><span class="line"><span class="built_in">console</span>.log(name); <span class="comment">// "zhoushuang"</span></span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/01/05/ES6%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%89(%E8%A7%A3%E6%9E%84%E3%80%81Set%E5%92%8CMap)/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-浅谈SVG" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/07/%E6%B5%85%E8%B0%88SVG/"
+    >浅谈SVG</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/12/07/%E6%B5%85%E8%B0%88SVG/" class="article-date">
+  <time datetime="2019-12-07T08:14:44.000Z" itemprop="datePublished">2019-12-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="浅谈SVG"><a href="#浅谈SVG" class="headerlink" title="浅谈SVG"></a>浅谈SVG</h1><h2 id="一、SVG相关概念"><a href="#一、SVG相关概念" class="headerlink" title="一、SVG相关概念"></a>一、SVG相关概念</h2><ul>
+<li><p>什么是SVG</p>
+<p>svg(Scalable Vector Graphic)，是一种可缩放的矢量图形，现在就针对定义来聊聊。</p>
+<ul>
+<li><p>矢量图形和栅格图形</p>
+<ul>
+<li><p>栅格图形</p>
+<p>在这种系统中，图像由一个像素数组组成，这个数组里面的每一个像素都会用图形对应位置的RGB值表示，可以认为在一个图像上划分出N个正方形小方块，每一个小方块的值都等于图像在该位置的颜色，且改颜色用RBG的形式表示</p>
+</li>
+<li><p>矢量图形</p>
+<p>在这种系统中，图像由一组几何图形的指令组成，矢量阅读器会按照指令在对应的指标集上绘制出一系列对应的图形。可以把图像切割成了N个几何图形，每一个图形都会记录相关的坐标，坐标间的连接顺序，方法等要素从而生成完成这个图形的指令，阅读器就会根据这些指令画出一个个几何图形最后形成完整的图像</p>
+      
+      <a class="article-more-link" href="/2019/12/07/%E6%B5%85%E8%B0%88SVG/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-ES6总结二(对象和数组)" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/"
+    >ES6语法总结(二)</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/" class="article-date">
+  <time datetime="2019-11-21T10:54:12.000Z" itemprop="datePublished">2019-11-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="对象-Object"><a href="#对象-Object" class="headerlink" title="对象(Object)"></a>对象(Object)</h2><ul>
+<li><p><strong>属性初始化器速记</strong>：在ES6中当对象字面量中的属性只有名称时， JS 引擎会在周边作用域查找同名变量。若找到，该变量的值将会被赋给对象字面量的同名属性。所以当属性和值相同时可以只写一个名称例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        name,</span><br><span class="line">        age</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2019/11/21/ES6%E6%80%BB%E7%BB%93%E4%BA%8C(%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%95%B0%E7%BB%84)/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-ES6总结一(变量与函数)" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/"
+    >ES6语法总结(一)</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/" class="article-date">
+  <time datetime="2019-10-11T09:22:55.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/web%E5%89%8D%E7%AB%AF/">web前端</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="ES6语法总结"><a href="#ES6语法总结" class="headerlink" title="ES6语法总结"></a>ES6语法总结</h1><h2 id="块级绑定（let-，var，const）"><a href="#块级绑定（let-，var，const）" class="headerlink" title="块级绑定（let ，var，const）"></a>块级绑定（<em>let ，var，const</em>）</h2><h3 id="传统var的问题（变量提升，块级作用域）"><a href="#传统var的问题（变量提升，块级作用域）" class="headerlink" title="传统var的问题（变量提升，块级作用域）"></a>传统var的问题（<em>变量提升，块级作用域</em>）</h3><p>var是用来声明各类型变量的关键字，但存在一个问题–<strong>变量提升</strong>（<em>在当前作用域内使用var关键词声明的变量都会提升到当前作用域的顶部</em>）例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (condition) &#123;</span><br><span class="line"><span class="keyword">var</span> value = <span class="string">"blue"</span>;</span><br><span class="line"><span class="comment">// 其他代码</span></span><br><span class="line"><span class="keyword">return</span> value;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// value 在此处可访问，值为 undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2019/10/11/ES6%E6%80%BB%E7%BB%93%E4%B8%80(%E5%8F%98%E9%87%8F%E4%B8%8E%E5%87%BD%E6%95%B0)/">阅读更多...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag">前端</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+    <article id="post-HelloShips" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/10/06/HelloShips/"
+    >Hello Ships</a> 
+</h2>
+ 
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/10/06/HelloShips/" class="article-date">
+  <time datetime="2019-10-06T14:45:18.000Z" itemprop="datePublished">2019-10-06</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+
+      
+      <h1 id="Hello-Ships"><a href="#Hello-Ships" class="headerlink" title="Hello Ships"></a>Hello Ships</h1><p>折腾了两天，终于把这个博客搭起来了，感谢过程中给我帮助的文字和人儿们</p>
+<p>第一次输入完localhost:4000看到生成的页面，突然有种很复杂的恍惚，就像是在海上常年冲浪的人找到了一个小岛，然后得到了一个海螺</p>
+<p>至此,</p>
+<p>这个海边独居的人可以把自己的思绪写成旋律</p>
+<p>吹进海螺里  </p>
+<p>偶尔有路过的航船听到</p>
+<p>鸣笛致意</p>
+<p>大家相视一笑</p>
+<p>挥挥手 </p>
+<p>然后各自离开</p>
+<p>奔赴下一场相遇</p>
+<p>我很喜欢这种感觉</p>
+<p>Hello Ships~</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hello-Ships/" rel="tag">Hello Ships</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%82%E8%B0%88/" rel="tag">杂谈</a></li></ul>
+
+
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+  
+  
+
+</article>
+    
+  </article>
+  
+
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2020
+        <i class="ri-heart-fill heart_icon"></i> zhou shuang
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="预"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%91%84%E5%BD%B1/">摄影</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<!-- 复制 -->
+
+  
+<link rel="stylesheet" href="/css/clipboard.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+    
+  </div>
+</body>
+
+</html>
