@@ -19,8 +19,12 @@ after_script:
   - git config user.name "JoshuaZZZs" # --{GitHub账户名称}
   - git config user.email "15979089154@189.cn" #--{Github账户邮箱}
   - git add .
-  - git commit -m "Update docs"
+  - git commit -m "Update From Travis-cli"
+   # Github Pages
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+    # Coding Pages
+  - git push --force --quiet "https://zhoushaung:${CO_TOKEN}@${CO_REF}" master:master
+
 # E: Build LifeCycle
 
 branches:
@@ -29,3 +33,4 @@ branches:
 env:
  global:
    - GH_REF:  github.com/JoshuaZZZs/JoshuaZZZs.github.io.git # --{仓库地址}
+   - CO_REF:  git@e.coding.net:zhoushaung/zhoushaungPage.git
