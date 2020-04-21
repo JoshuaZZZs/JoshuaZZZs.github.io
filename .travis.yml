@@ -11,15 +11,21 @@ install:    # 安装阶段（详细的各阶段顺序，请查询 Travis-CI 相�
   - npm install
 
 script:    # 执行构建阶段
-  - hexo clean    # hexo 的清理命令
-  - hexo generate    # hexo 的生成（构建）命令，即最核心的生成静态文件过程
-# GitHub Pages Deployment
-deploy:    # 部署阶段
-  provider: pages    # 约定 pages 为 GitHub Pages 服务，必须且不可更改
-  skip-cleanup: true  # 必须跳过清理，否则过程中生成的文件（要发布的静态资源）会被清理
-  github-token: $GITHUB_TOKEN  # 部署时使用的 token
-  keep-history: false   # 设置为 false 时，使用 `git push --force` 命令覆盖历史记录
-  on:
-    branch: hexo    # 仅监听 master 分支的变化，才执行构建
-  target-branch: master   # 用于存放静态资源的分支
-  local-dir: public   # `hexo generate` 命令生成的静态资源所在路径
+  #- hexo clean    # hexo 的清理命令
+ # - hexo generate    # hexo 的生成（构建）命令，即最核心的生成静态文件过程
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name "JoshuaZZZs" # --{GitHub账户名称}
+  - git config user.email "15979089154@189.cn" #--{Github账户邮箱}
+  - git add .
+  - git commit -m "Update docs"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master
+# E: Build LifeCycle
+
+branches:
+  only:
+    - hexo #--{Hexo源码分支名称}
+env:
+ global:
+   - GH_REF:  github.com/JoshuaZZZs/JoshuaZZZs.github.io.git # --{仓库地址}
