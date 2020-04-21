@@ -101,7 +101,7 @@ deploy:
   type: git
   repo: git@github.com:JoshuaZZZs/JoshuaZZZs.github.io.git
   branch: hexo
-  message: '更新'
+  message: update
   # hexo-generator-searchdb
   
 search:
