@@ -79,7 +79,7 @@ method1(function(err, result) {
 
   #### Promise 生命周期
 
-  ![1585030576405](ES6\image\Promise生命周期.png)
+  ![1585030576405](ES6语法总结四(迭代生成器、Promise和异步)/Promise生命周期.png)
 
   在这里把几个意思都解释一下：
 
