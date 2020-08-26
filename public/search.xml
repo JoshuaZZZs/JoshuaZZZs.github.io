@@ -795,102 +795,260 @@ eturn value;
   <entry>
     <title>VueX</title>
     <url>/2020/01/21/VueX/</url>
-    <content><![CDATA[<h1 id="VueX-���-���۲���"><a href="#VueX-���-���۲���" class="headerlink" title="VueX ���(���۲���)"></a>VueX ���(���۲���)</h1><h2 id="һ��VueX-�ĸ���"><a href="#һ��VueX-�ĸ���" class="headerlink" title="һ��VueX �ĸ���"></a>һ��VueX �ĸ���</h2><h3 id="1-�ο��ٷ��j���-Vuex-��һ��ר��Ϊ-Vue-js-��Z�Ӧ�o���״̬����gʽ�����u��д洢����Ӧ�o����������״̬��������Ӧ�L���֤״̬��һ�ֿ�Ԥ��k�ʽ�����仯������˵��λ������¼����ؼ��㣺"><a href="#1-�ο��ٷ��j���-Vuex-��һ��ר��Ϊ-Vue-js-��Z�Ӧ�o���״̬����gʽ�����u��д洢����Ӧ�o����������״̬��������Ӧ�L���֤״̬��һ�ֿ�Ԥ��k�ʽ�����仯������˵��λ������¼����ؼ��㣺" class="headerlink" title="1.�ο��ٷ��ĵ��� Vuex ��һ��ר��Ϊ Vue.js ��Ƶ�Ӧ�ó���״̬����ģʽ�����ü��д洢����Ӧ�õ����������״̬��������Ӧ�Ĺ���֤״̬��һ�ֿ�Ԥ��ķ�ʽ�����仯������˵��λ������¼����ؼ��㣺"></a>1.�ο��ٷ��ĵ��� Vuex ��һ��ר��Ϊ Vue.js ��Ƶ�Ӧ�ó���״̬����ģʽ�����ü��д洢����Ӧ�õ����������״̬��������Ӧ�Ĺ���֤״̬��һ�ֿ�Ԥ��ķ�ʽ�����仯������˵��λ������¼����ؼ��㣺</h3><pre><code>1.״̬����ģʽ
-2.��Ӧ�Ĺ���Ϳ�Ԥ��ķ�ʽ</code></pre><p>����һһ������һ�£�</p>
-<h4 id="1-״̬����gʽ"><a href="#1-״̬����gʽ" class="headerlink" title="1.״̬����ģʽ"></a>1.״̬����ģʽ</h4><p>�Դ� vuex ���ṩ��һ���ٷ�������˵����</p>
+    <content><![CDATA[<h1 id="VueX-详解-理论部分"><a href="#VueX-详解-理论部分" class="headerlink" title="VueX 详解(理论部分)"></a>VueX 详解(理论部分)</h1><h2 id="一、VueX-的概念"><a href="#一、VueX-的概念" class="headerlink" title="一、VueX 的概念"></a>一、VueX 的概念</h2><h3 id="1-参考官方文档：-Vuex-是一个专门为-Vue-js-设计的应用程序状态管理模式。采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。简单来说这段话有以下几个关键点："><a href="#1-参考官方文档：-Vuex-是一个专门为-Vue-js-设计的应用程序状态管理模式。采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。简单来说这段话有以下几个关键点：" class="headerlink" title="1.参考官方文档： Vuex 是一个专门为 Vue.js 设计的应用程序状态管理模式。采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。简单来说这段话有以下几个关键点："></a>1.参考官方文档： Vuex 是一个专门为 Vue.js 设计的应用程序状态管理模式。采用集中存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。简单来说这段话有以下几个关键点：</h3><pre><code>1.状态管理模式
+2.相应的规则和可预测的方式</code></pre><p>下面一一来介绍一下：</p>
+<h4 id="1-状态管理模式"><a href="#1-状态管理模式" class="headerlink" title="1.状态管理模式"></a>1.状态管理模式</h4><p>对此 vuex 的提供了一个官方案例来说明：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line"> &#x2F;&#x2F; state</span><br><span class="line"> data () &#123;</span><br><span class="line">   return &#123;</span><br><span class="line">     count: 0</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#x2F;&#x2F; view</span><br><span class="line"> template: &#96;</span><br><span class="line">   &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;div&gt;</span><br><span class="line"> &#96;,</span><br><span class="line"> &#x2F;&#x2F; actions</span><br><span class="line"> methods: &#123;</span><br><span class="line">   increment () &#123;</span><br><span class="line">     this.count++</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<pre><code>���������ܿ�����ʵ�Ϲ���vuex�ܹ��������󲿷֣�
-1.`data���ִ������Ҳ�����������������Դ`-state
-2.`template���ִ�ŵ���html��ǩҲ������ͼ`-view
-3.`methods���ִ����صĺ���Ҳ�����������ݸı䷽ʽ`-actions</code></pre><p>������������Ϲ�ͬ������һ��״̬�Թ���Ӧ�ò��Ե����������ķ�ʽ���У����Ա�֤���ݵļ�༴��<br><img src="/2020/01/21/VueX/flow.png" alt="����������" title="����������"></p>
-<h4 id="2-��Ӧ�L���Ϳ�Ԥ��k�ʽ"><a href="#2-��Ӧ�L���Ϳ�Ԥ��k�ʽ" class="headerlink" title="2.��Ӧ�Ĺ���Ϳ�Ԥ��ķ�ʽ"></a>2.��Ӧ�Ĺ���Ϳ�Ԥ��ķ�ʽ</h4><p>���������ϸ�������Ҳ�ܺ����⣬״̬����ģʽ�µ����ݵļ���п�����ĳЩӦ�ó����б��ƻ���<br><code>1.�����ͼ����ͬһ״̬</code><br><code>2.�����ͬ����ͼ��Ϊ����Ҫ����ͬһ״̬</code></p>
+<pre><code>分析上例能看到事实上构成vuex总共有三个大部分：
+1.`data部分存放数据也就是驱动程序的数据源`-state
+2.`template部分存放的是html标签也就是视图`-view
+3.`methods部分存放相关的函数也就是驱动数据改变方式`-actions</code></pre><p>这三个部分组合共同构成了一个状态自管理应用并以单向数据流的方式运行，用以保证数据的简洁即：<br><img src="/2020/01/21/VueX/flow.png" alt="单向数据流" title="单向数据流"></p>
+<h4 id="2-相应的规则和可预测的方式"><a href="#2-相应的规则和可预测的方式" class="headerlink" title="2.相应的规则和可预测的方式"></a>2.相应的规则和可预测的方式</h4><p>明白了以上概念后这个也很好理解，状态管理模式下的数据的简洁行可能在某些应用场景中被破坏：<br><code>1.多个视图依赖同一状态</code><br><code>2.多个不同的视图行为都需要更改同一状态</code></p>
 <ul>
-<li>�������� 1.һ�㶼�Ǹ�������Ƕ�ף����� 2.һ�㶼�Ǹ��������ֵ�� bus �¼������������Ͻ���취�����ᵼ�´����߳�����ά�����в���Ҫ�������������⡣</li>
-<li>��ʱ��һ����˼·�����������⣺�����й�����״̬�������������������λ�õ���ͼ�����Ի�ȡ�͸��Ķ�Ӧ״̬��ͨ�����������״̬�����ĸ��ͨ��ǿ�ƵĹ�������֤��ͼ��״̬�Ķ����ԣ������ͱȽ������Ľ����������⣬��������һ��ȫ�ֵ�������ģʽ�������ķ�ʽҲ�� v ʱ uex �Ļ������˼·<br>���ڴ� vuex �ƶ�������ص�ǿ�Ʒ������Ա������и��Ĺ���״̬����Ϊ�������ͬʱά������</li>
+<li>对于问题 1.一般都是各组件多层嵌套，问题 2.一般都是父子组件传值或 bus 事件监听但是以上解决办法不但会导致代码冗长难以维护还有不必要的性能消耗问题。</li>
+<li>此时有一个新思路来解决这个问题：把所有共享的状态单独抽离出来这样任意位置的视图都可以获取和更改对应状态，通过定义与隔离状态管理的概念并通过强制的规则来保证视图和状态的独立性，这样就比较完美的解决了这个问题，而这种以一个全局单例管理模式来管理的方式也是 v 时 uex 的基本设计思路<br>基于此 vuex 制定出了相关的强制方法，以便让所有更改共享状态的行为简洁明了同时维护方便</li>
 </ul>
-<h2 id="����VueX-��ʹ�o���"><a href="#����VueX-��ʹ�o���" class="headerlink" title="����VueX ��ʹ�ó���"></a>����VueX ��ʹ�ó���</h2><p>vuex ������ͳһ����״̬�ĵ������Ǹ�ʲôʱ��ʹ���أ�һ���������ձ���������˵�����д�����Ŀ�лῼ��ʹ�ã������Ҿ��Ų�̫׼ȷ�����ҵ��������Ƿ�ʹ�� vuex Ӧ���������Ŀ���Ƿ������ vuex �����������⣬������Ƴ������ʲô�����������ʲô�����Ը����Ҳ���ľ���򵥵�������һ��ʹ�ó�����<br><code>1.����ṹ���Ӷ��ֽ��������ﳵ���б�����...</code><br><code>2.����ظ����������ɵ���Ҫ�������ݣ�������...</code><br><code>3.����������������������ͼ��ȫ�ַ��...</code></p>
-<h2 id="����vueX-���ĸ���-�s����ٷ��j��е�ͼ��"><a href="#����vueX-���ĸ���-�s����ٷ��j��е�ͼ��" class="headerlink" title="����vueX ���ĸ��� ###�ȿ����ٷ��ĵ��е�ͼ��"></a>����vueX ���ĸ��� ###�ȿ����ٷ��ĵ��е�ͼ��</h2><p><img src="/2020/01/21/VueX/vuex.png" alt="����" title="VueX"><br>�� 3 ������<code>State</code>��<code>Action</code>��<code>Mutaiton</code>�ټ���<code>Getter</code>��<code>Moudule</code>�ܼ��� 5 ��,һһ����һ��</p>
+<h2 id="二、VueX-的使用场景"><a href="#二、VueX-的使用场景" class="headerlink" title="二、VueX 的使用场景"></a>二、VueX 的使用场景</h2><p>vuex 是用来统一管理状态的但是我们该什么时候使用呢？一般来我们普遍意义上来说仅在中大型项目中会考虑使用，但是我觉着不太准确，在我的理解中是否使用 vuex 应当解决与项目中是否会遇到 vuex 方便解决的问题，它被设计出来解决什么就用它来解决什么，所以根据我不多的经验简单的罗列了一下使用场景：<br><code>1.组件结构复杂多种交互：购物车，列表操作...</code><br><code>2.组件重复销毁与生成但需要留存数据：弹窗，...</code><br><code>3.多个触发方法，多个依赖视图：全局风格...</code></p>
+<h2 id="三、vueX-核心概念-先看看官方文档中的图例"><a href="#三、vueX-核心概念-先看看官方文档中的图例" class="headerlink" title="三、vueX 核心概念 ###先看看官方文档中的图例"></a>三、vueX 核心概念 ###先看看官方文档中的图例</h2><p><img src="/2020/01/21/VueX/vuex.png" alt="流程" title="VueX"><br>有 3 个概念<code>State</code>，<code>Action</code>，<code>Mutaiton</code>再加上<code>Getter</code>和<code>Moudule</code>总计有 5 个,一一来看一下</p>
 <h4 id="1-State"><a href="#1-State" class="headerlink" title="1.State"></a>1.State</h4><ul>
-<li><code>���</code>State ��Ϊ����ģʽ�����µĸ����ȫ����Ψһ�Ķ���ʽ�����ڣ���ΪΨһ������Դ����ܹ������Ҫ������״̬</li>
-<li><code>��Vuex�еĶ����ʹ�ã�</code></li>
+<li><code>概念：</code>State 作为单例模式管理下的概念，以全局且唯一的对象方式而存在，作为唯一的数据源里仅能够存放需要共享的状态</li>
+<li><code>在Vuex中的定义和使用：</code></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const Counter &#x3D; &#123;</span><br><span class="line"> template: &#96;&lt;div&gt;&#123;&#123; count &#125;&#125;&lt;&#x2F;div&gt;&#96;,</span><br><span class="line"> computed: &#123;</span><br><span class="line">   count () &#123;</span><br><span class="line">     return this.$store.state.count</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>��������mapState��</code>һ����˵�� computed ��ʹ�ö���չ������������״̬���ɶ�Ӧ�ļ�������</li>
+<li><code>辅助函数mapState：</code>一般来说在 computed 中使用对象展开运算符将多个状态生成对应的计算属性</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">localComputed () &#123; &#x2F;* ... *&#x2F; &#125;,</span><br><span class="line">&#x2F;&#x2F; ʹ�ö���չ����������˶�����뵽�ⲿ������</span><br><span class="line">...mapState(&#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">localComputed () &#123; &#x2F;* ... *&#x2F; &#125;,</span><br><span class="line">&#x2F;&#x2F; 使用对象展开运算符将此对象混入到外部对象中</span><br><span class="line">...mapState(&#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-Mutation"><a href="#2-Mutation" class="headerlink" title="2.Mutation"></a>2.Mutation</h4><ul>
-<li><code>���</code>Mutation �� Vuex ����Ψһ�ܶ� State ״̬���в��������ԣ��������Ÿ��ֶ� State ��״̬�ĸ��ֲ������� vue �е� methods �����ƣ����ԶԱ������⡣</li>
-<li><code>��Vuex�еĶ�����ʹ�ã�</code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">state: &#123;</span><br><span class="line">count: 1</span><br><span class="line">&#125;,</span><br><span class="line">mutations: &#123;</span><br><span class="line">increment (state) &#123;</span><br><span class="line">  &#x2F;&#x2F; ���״̬</span><br><span class="line">  state.count++</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<li><p><code>概念：</code>Mutation 在 Vuex 中是唯一能对 State 状态进行操作的属性，里面存放着各种对 State 中状态的各种操作，和 vue 中的 methods 很类似，可以对比着理解。</p>
+</li>
+<li><p><code>在Vuex中的定义与使用：</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">state: &#123;</span><br><span class="line">count: 1</span><br><span class="line">&#125;,</span><br><span class="line">mutations: &#123;</span><br><span class="line">increment (state) &#123;</span><br><span class="line">  &#x2F;&#x2F; 变更状态</span><br><span class="line">  state.count++</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<p><code>1.����</code>:�ɴ�Ҳ�ܿ������� mutation �еĸ��ַ��������¼�����(type)+�ص�����(handler)��ɣ������ڷ�����+������<br><code>2.����</code>:store.commit(Type ��)������</p>
+<p><code>1.声明</code>:由此也能看到的是 mutation 中的各种方法都由事件类型(type)+回调函数(handler)组成，类似于方法名+函数体<br><code>2.调用</code>:store.commit(Type 名)来调用</p>
 <ul>
-<li><code>�ύ�غ�(PayLoad)</code>:�����ǵ��� Mutation ��Ӧ����ʱ�������� Type ���ƻ������ں��洫����������������ʹ����Ҳ�������������ͣ������ں����еĲ����б�</li>
-<li><code>�������ύ</code>���� commit ʱֱ�Ӱ� Type �ͺ���д��ͬһ��������</li>
+<li><code>提交载荷(PayLoad)</code>:在我们调用 Mutation 对应函数时除了输入 Type 名称还可以在后面传入其他参数，可以使对象也可以是其他类型，类似于函数中的参数列表</li>
+<li><code>对象风格提交</code>：在 commit 时直接把 Type 和荷载写在同一个对象中</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">store.commit(&#123;</span><br><span class="line"> type: &#39;increment&#39;,</span><br><span class="line"> amount: 10</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
 
-<p><code>3.ͬ���ԣ�</code>�� Mutation �еĲ���������ͬ���ģ�Ϊ�˱�֤�� state ״̬��ȷ�����޸�<br><code>4.��������MapMutation:</code>һ����˵��Ӧ�� Methods ��ʹ�ö���չ������ Mutation �еĶ�Ӧ����ӳ�䵽�ֲ������</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> &#x2F;&#x2F; ...</span><br><span class="line"> methods: &#123;</span><br><span class="line">   ...mapMutations([</span><br><span class="line">     &#39;increment&#39;, &#x2F;&#x2F; �� &#96;this.increment()&#96; ӳ��Ϊ &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line"></span><br><span class="line">     &#x2F;&#x2F; &#96;mapMutations&#96; Ҳ֧���غɣ�</span><br><span class="line">     &#39;incrementBy&#39; &#x2F;&#x2F; �� &#96;this.incrementBy(amount)&#96; ӳ��Ϊ &#96;this.$store.commit(&#39;incrementBy&#39;, amount)&#96;</span><br><span class="line">   ]),</span><br><span class="line">   ...mapMutations(&#123;</span><br><span class="line">     add: &#39;increment&#39; &#x2F;&#x2F; �� &#96;this.add()&#96; ӳ��Ϊ &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>3.同步性：</code>在 Mutation 中的操作必须是同步的，为了保证对 state 状态的确定性修改<br><code>4.辅助函数MapMutation:</code>一般来说对应在 Methods 中使用对象展开符将 Mutation 中的对应方法映射到局部组件中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; mapMutations &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> &#x2F;&#x2F; ...</span><br><span class="line"> methods: &#123;</span><br><span class="line">   ...mapMutations([</span><br><span class="line">     &#39;increment&#39;, &#x2F;&#x2F; 将 &#96;this.increment()&#96; 映射为 &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line"></span><br><span class="line">     &#x2F;&#x2F; &#96;mapMutations&#96; 也支持载荷：</span><br><span class="line">     &#39;incrementBy&#39; &#x2F;&#x2F; 将 &#96;this.incrementBy(amount)&#96; 映射为 &#96;this.$store.commit(&#39;incrementBy&#39;, amount)&#96;</span><br><span class="line">   ]),</span><br><span class="line">   ...mapMutations(&#123;</span><br><span class="line">     add: &#39;increment&#39; &#x2F;&#x2F; 将 &#96;this.add()&#96; 映射为 &#96;this.$store.commit(&#39;increment&#39;)&#96;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-Action"><a href="#3-Action" class="headerlink" title="3.Action"></a>3.Action</h4><ul>
-<li><p><code>����</code>:Action �����ʺ� Mutation ����һ�������������� Action �п��԰���ͬ���첽������ͬʱ Action ������ֱ�Ӷ� State ���в�����Ҫ�ύ�ĵ� Mutation������ Mutation �еķ����� State ���в���</p>
+<li><p><code>概念</code>:Action 的性质和 Mutation 几乎一样，但区别在于 Action 中可以包含同，异步方法。同时 Action 并不能直接对 State 进行操作需要提交的到 Mutation，在由 Mutation 中的方法对 State 进行操作</p>
 </li>
-<li><p><code>��VueX�еĶ�����ʹ��</code></p>
+<li><p><code>在VueX中的定义与使用</code></p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line"> state: &#123;</span><br><span class="line">   count: 0</span><br><span class="line"> &#125;,</span><br><span class="line"> mutations: &#123;</span><br><span class="line">   increment (state) &#123;</span><br><span class="line">     state.count++</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> actions: &#123;</span><br><span class="line">   increment (context) &#123;</span><br><span class="line">     context.commit(&#39;increment&#39;)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line"> state: &#123;</span><br><span class="line">   count: 0</span><br><span class="line"> &#125;,</span><br><span class="line"> mutations: &#123;</span><br><span class="line">   increment (state) &#123;</span><br><span class="line">     state.count++</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> actions: &#123;</span><br><span class="line">   increment (context) &#123;</span><br><span class="line">     context.commit(&#39;increment&#39;)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<p><code>1.������</code>�� Mutation ��ͬ<br><code>2.����(�ַ�)��</code>context.dispatch(Type ��)<br><code>3.�ύ���أ�</code>�� Mutation ��ͬ<br><code>4.�������ύ��</code>�� Mutation ��ͬ</p>
+<p><code>1.声明：</code>与 Mutation 相同<br><code>2.调用(分发)：</code>context.dispatch(Type 名)<br><code>3.提交荷载：</code>与 Mutation 相同<br><code>4.对象风格提交：</code>与 Mutation 相同</p>
 <ul>
-<li><code>�첽��</code>���� Action ���첽������ɺ󷵻ص���һ�� Promise ������Ҫʵ�ֶ� State �Ĳ������������м��� commit ͬ������</li>
-<li><code>��������MapAction��</code>�� Mutation ��ͬ<br>####4.Getter</li>
-<li><code>���</code>����Ҫ�� Store ������ state �Ĳ������Խ���ĳЩ����֮�����ɵ��ų����Դ���� getter ���棬������ Computed��</li>
+<li><code>异步性</code>：在 Action 的异步方法完成后返回的是一个 Promise 对象，若要实现对 State 的操作必须在其中加入 commit 同步方法</li>
+<li><code>辅助函数MapAction：</code>与 Mutation 相同<br>####4.Getter</li>
+<li><code>概念：</code>当需要对 Store 对象中 state 的部分属性进行某些操作之后生成的排成属性存放在 getter 里面，类似于 Computed。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   computed: &#123;</span><br><span class="line">  doneTodosCount () &#123;</span><br><span class="line">    return this.$store.state.todos.filter(todo &#x3D;&gt; todo.done).length</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>��Vuex�еĶ�����ʹ��</code><br><code>1.����:</code>����+�ύ����+�ص�����<br><code>2.���ã�</code><br><code>1ͨ�����Է���</code>��Getter �ᱩ¶һ�� store.getters ����ͨ���ö���.��Ӧ���Ե���ʽ����<br><code>store.getters.doneTodos</code><br><code>2.ͨ���������ʣ�</code>�� getters ����һ���������ڵ���ʱ������Ӧ����ͨ�� getters �ж�Ӧ�����Լ�ӵĶ� store �е�ĳЩ���Խ��в���</li>
+<li><code>在Vuex中的定义与使用</code><br><code>1.声明:</code>名称+提交荷载+回调函数<br><code>2.调用：</code><br><code>1通过属性访问</code>：Getter 会暴露一个 store.getters 对象通过该对象.对应属性的形式访问<br><code>store.getters.doneTodos</code><br><code>2.通过方法访问：</code>让 getters 返回一个函数并在调用时传入相应参数通过 getters 中对应的属性间接的对 store 中的某些属性进行操作</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">     getters: &#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  getTodoById: (state) &#x3D;&gt; (id) &#x3D;&gt; &#123;</span><br><span class="line">    return state.todos.find(todo &#x3D;&gt; todo.id &#x3D;&#x3D;&#x3D; id)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>MapperGetter����������</code>�ö���չ������ computed ���Խ���ӳ�䣬��ʱ��Ҫ��������Ҫ�ö������ʽ���½���</li>
+<li><code>MapperGetter辅助函数：</code>用对象展开符将 computed 属性进行映射，此时若要重命名需要用对象的形式重新接收</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> &#x2F;&#x2F; ...</span><br><span class="line"> computed: &#123;</span><br><span class="line"> &#x2F;&#x2F; ʹ�ö���չ��������� getter ���� computed ������</span><br><span class="line">   ...mapGetters([</span><br><span class="line">     &#39;doneTodosCount&#39;,</span><br><span class="line">     &#39;anotherGetter&#39;,</span><br><span class="line">     &#x2F;&#x2F; ...</span><br><span class="line">   ])</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; mapGetters &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> &#x2F;&#x2F; ...</span><br><span class="line"> computed: &#123;</span><br><span class="line"> &#x2F;&#x2F; 使用对象展开运算符将 getter 混入 computed 对象中</span><br><span class="line">   ...mapGetters([</span><br><span class="line">     &#39;doneTodosCount&#39;,</span><br><span class="line">     &#39;anotherGetter&#39;,</span><br><span class="line">     &#x2F;&#x2F; ...</span><br><span class="line">   ])</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="5-Moudule"><a href="#5-Moudule" class="headerlink" title="5.Moudule"></a>5.Moudule</h4><ul>
-<li><code>���</code>��Ӧ�ù��ڸ���ʱ store ��������쳣��ӷ�ף�Ϊ�˽������������Ҫʹ�õ� Vuex �е� Moudule ����(ģ��)�����ڶԸ��ӵ� store �����иʹ֮�ָ��һ��������ģ�飬ÿ��ģ��ӵ�ж����� state,Mutation,��ͬʱģ���ڲ�Ҳ�ܹ��໥Ƕ�ף������� vue �е���� components �ĸ���</li>
+<li><code>概念：</code>当应用过于复杂时 store 对象会变得异常的臃肿，为了解决这个问题就需要使用到 Vuex 中的 Moudule 属性(模块)，用于对复杂的 store 进行切割，使之分割成一个独立的模块，每个模块拥有独立的 state,Mutation,等同时模块内部也能够相互嵌套，类似于 vue 中的组件 components 的概念</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> const moduleA &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;,</span><br><span class="line">  getters: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const moduleB &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    a: moduleA,</span><br><span class="line">    b: moduleB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">store.state.a &#x2F;&#x2F; -&gt; moduleA ��״̬</span><br><span class="line">store.state.b &#x2F;&#x2F; -&gt; moduleB ��״̬</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> const moduleA &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;,</span><br><span class="line">  getters: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const moduleB &#x3D; &#123;</span><br><span class="line">  state: &#123; ... &#125;,</span><br><span class="line">  mutations: &#123; ... &#125;,</span><br><span class="line">  actions: &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const store &#x3D; new Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    a: moduleA,</span><br><span class="line">    b: moduleB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">store.state.a &#x2F;&#x2F; -&gt; moduleA 的状态</span><br><span class="line">store.state.b &#x2F;&#x2F; -&gt; moduleB 的状态</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>Moudule�ڵľֲ�״̬��</code>�ڲ�ͬĳ���л�ȡ��Ĭ�϶���������Ҳ������ģ���ڲ��������ڲ�ͬ����� this<br><code>1.�ֲ�״̬�µ�Mutation��state:</code>ʹ�÷�ʽ��ȫ����û������<br><code>2.�ֲ�״̬�µ�action��getters��</code>�ھֲ�״̬�½��յĲ����еĵ������Ǿֲ�״̬�ĸ��ڵ�</li>
-<li><code>Module�����ռ䣺</code><br><code>���ݣ�</code>ͨ���� moudule ������ namespace:true �����ɶ�Ӧ���Ƶ�ģ�飬��ģ�鱻ע���ģ���ڵ��������ݶ������������vue ��ֳ��������� name:’xx’���ö�Ӧ��������·���ı䣩</li>
-<li><code>�������ռ��Module������ķ���</code><br><code>1.Module����ȫ������</code><br><code>1.1.</code>ʹ��ȫ�ֵ� state �� getter���ھֲ�״̬�н��յ������ĸ������ֱ����ȫ��״̬��ȫ�� getters��Ҳ��ͨ����Ӧ context �� store ���뷽��<br><code>1.2</code>ʹ��ȫ�ֵ� mutation �� action���ھֲ������н�����Ϊ�����������������Ӧ�� dispatch �� commit<br><code>1.3</code>�ֲ�ע��ȫ�� action:�� root:true ��Ϊ������� handler ��</li>
+<li><code>Moudule内的局部状态：</code>在不同某块中获取的默认对象作用域也仅限于模块内部，类似于不同组件的 this<br><code>1.局部状态下的Mutation和state:</code>使用方式和全局下没有区别，<br><code>2.局部状态下的action和getters：</code>在局部状态下接收的参数中的第三个是局部状态的根节点</li>
+<li><code>Module命名空间：</code><br><code>内容：</code>通过在 moudule 中添加 namespace:true 来生成对应名称的模块，当模块被注册后模块内的所有内容都会调整命名（vue 拆分出组件后加入 name:’xx’会让对应所有内容路径改变）</li>
+<li><code>带命名空间的Module与内外的访问</code><br><code>1.Module访问全局内容</code><br><code>1.1.</code>使用全局的 state 与 getter，在局部状态中接收第三第四个参数分别代表全局状态，全局 getters，也会通过对应 context 或 store 传入方法<br><code>1.2</code>使用全局的 mutation 和 action，在局部方法中将其作为第三个参数并传入对应的 dispatch 或 commit<br><code>1.3</code>局部注册全局 action:将 root:true 作为定义放在 handler 中</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> modules: &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">   namespaced: true,</span><br><span class="line">   getters: &#123;</span><br><span class="line">     &#x2F;&#x2F; �����ģ��� getter �У�&#96;getters&#96; ���ֲ�����</span><br><span class="line">     &#x2F;&#x2F; �����ʹ�� getter �ĵ��ĸ����������� &#96;rootGetters&#96;</span><br><span class="line">     someGetter (state, getters, rootState, rootGetters) &#123;</span><br><span class="line">       getters.someOtherGetter &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someOtherGetter&#39;</span><br><span class="line">       rootGetters.someOtherGetter &#x2F;&#x2F; -&gt; &#39;someOtherGetter&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     someOtherGetter: state &#x3D;&gt; &#123; ... &#125;</span><br><span class="line">   &#125;,</span><br><span class="line"></span><br><span class="line">   actions: &#123;</span><br><span class="line">     &#x2F;&#x2F; �����ģ���У� dispatch �� commit Ҳ���ֲ�����</span><br><span class="line">     &#x2F;&#x2F; ���ǿ��Խ��� &#96;root&#96; �����Է��ʸ� dispatch �� commit</span><br><span class="line">     someAction (&#123; dispatch, commit, getters, rootGetters &#125;) &#123;</span><br><span class="line">       getters.someGetter &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someGetter&#39;</span><br><span class="line">       rootGetters.someGetter &#x2F;&#x2F; -&gt; &#39;someGetter&#39;</span><br><span class="line"></span><br><span class="line">       dispatch(&#39;someOtherAction&#39;) &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someOtherAction&#39;</span><br><span class="line">       dispatch(&#39;someOtherAction&#39;, null, &#123; root: true &#125;) &#x2F;&#x2F; -&gt; &#39;someOtherAction&#39;</span><br><span class="line"></span><br><span class="line">       commit(&#39;someMutation&#39;) &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someMutation&#39;</span><br><span class="line">       commit(&#39;someMutation&#39;, null, &#123; root: true &#125;) &#x2F;&#x2F; -&gt; &#39;someMutation&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     someOtherAction (ctx, payload) &#123; ... &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> modules: &#123;</span><br><span class="line">  foo: &#123;</span><br><span class="line">   namespaced: true,</span><br><span class="line">   getters: &#123;</span><br><span class="line">     &#x2F;&#x2F; 在这个模块的 getter 中，&#96;getters&#96; 被局部化了</span><br><span class="line">     &#x2F;&#x2F; 你可以使用 getter 的第四个参数来调用 &#96;rootGetters&#96;</span><br><span class="line">     someGetter (state, getters, rootState, rootGetters) &#123;</span><br><span class="line">       getters.someOtherGetter &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someOtherGetter&#39;</span><br><span class="line">       rootGetters.someOtherGetter &#x2F;&#x2F; -&gt; &#39;someOtherGetter&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     someOtherGetter: state &#x3D;&gt; &#123; ... &#125;</span><br><span class="line">   &#125;,</span><br><span class="line"></span><br><span class="line">   actions: &#123;</span><br><span class="line">     &#x2F;&#x2F; 在这个模块中， dispatch 和 commit 也被局部化了</span><br><span class="line">     &#x2F;&#x2F; 他们可以接受 &#96;root&#96; 属性以访问根 dispatch 或 commit</span><br><span class="line">     someAction (&#123; dispatch, commit, getters, rootGetters &#125;) &#123;</span><br><span class="line">       getters.someGetter &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someGetter&#39;</span><br><span class="line">       rootGetters.someGetter &#x2F;&#x2F; -&gt; &#39;someGetter&#39;</span><br><span class="line"></span><br><span class="line">       dispatch(&#39;someOtherAction&#39;) &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someOtherAction&#39;</span><br><span class="line">       dispatch(&#39;someOtherAction&#39;, null, &#123; root: true &#125;) &#x2F;&#x2F; -&gt; &#39;someOtherAction&#39;</span><br><span class="line"></span><br><span class="line">       commit(&#39;someMutation&#39;) &#x2F;&#x2F; -&gt; &#39;foo&#x2F;someMutation&#39;</span><br><span class="line">       commit(&#39;someMutation&#39;, null, &#123; root: true &#125;) &#x2F;&#x2F; -&gt; &#39;someMutation&#39;</span><br><span class="line">     &#125;,</span><br><span class="line">     someOtherAction (ctx, payload) &#123; ... &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>2.�ⲿ����Moudule�ֲ����ݣ�</code><br><code>1.ͨ�������������ʣ�</code><br><code>2.ͨ��createNamespacedHelpers���ʣ�</code>ͨ������ vue �е� createNamespacedHelpers�����ص���һ���������л�����������������ĸ����������������Ӧ�ú��ȡ�������������</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; createNamespacedHelpers &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const &#123; mapState, mapActions &#125; &#x3D; createNamespacedHelpers(&#39;some&#x2F;nested&#x2F;module&#39;)</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> computed: &#123;</span><br><span class="line">   &#x2F;&#x2F; �� &#96;some&#x2F;nested&#x2F;module&#96; �в���</span><br><span class="line">   ...mapState(&#123;</span><br><span class="line">     a: state &#x3D;&gt; state.a,</span><br><span class="line">     b: state &#x3D;&gt; state.b</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line">   &#x2F;&#x2F; �� &#96;some&#x2F;nested&#x2F;module&#96; �в���</span><br><span class="line">   ...mapActions([</span><br><span class="line">     &#39;foo&#39;,</span><br><span class="line">     &#39;bar&#39;</span><br><span class="line">   ])</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>2.外部访问Moudule局部内容：</code><br><code>1.通过辅助函数访问：</code><br><code>2.通过createNamespacedHelpers访问：</code>通过引入 vue 中的 createNamespacedHelpers，返回的是一个对象其中会包含给定明明看见的辅助函数类似于组件应用后获取引入组件的内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; createNamespacedHelpers &#125; from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">const &#123; mapState, mapActions &#125; &#x3D; createNamespacedHelpers(&#39;some&#x2F;nested&#x2F;module&#39;)</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line"> computed: &#123;</span><br><span class="line">   &#x2F;&#x2F; 在 &#96;some&#x2F;nested&#x2F;module&#96; 中查找</span><br><span class="line">   ...mapState(&#123;</span><br><span class="line">     a: state &#x3D;&gt; state.a,</span><br><span class="line">     b: state &#x3D;&gt; state.b</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;,</span><br><span class="line"> methods: &#123;</span><br><span class="line">   &#x2F;&#x2F; 在 &#96;some&#x2F;nested&#x2F;module&#96; 中查找</span><br><span class="line">   ...mapActions([</span><br><span class="line">     &#39;foo&#39;,</span><br><span class="line">     &#39;bar&#39;</span><br><span class="line">   ])</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="VueX-��������"><a href="#VueX-��������" class="headerlink" title="VueX ��������"></a>VueX ��������</h2><h3 id="�ϸ�gʽ"><a href="#�ϸ�gʽ" class="headerlink" title="�ϸ�ģʽ"></a>�ϸ�ģʽ</h3><ul>
-<li><code>���</code>���ϸ�ģʽ�»���ȼ������״̬����������״̬�ı�Ķ������������� mutation ���ᱨ��</li>
-<li><code>���ã�</code>�� store ����ʱ����`strict��true</li>
-<li><code>ע�����</code><br><code>�ϸ�ģʽ�µı���������</code>���� input ȥ�� vuex �е�״̬ʱ���ڸı䲻���� mutation ���������Իᱨ����Ҫ������������һ����˵ �� input �� change �¼����ڶ�Ӧ������ʹ�� commit �ύ<br>���߰�һ����������ʹ�� get ������ȡ״̬ʹ�� set ��������״̬`</li>
+<h2 id="VueX-引申内容"><a href="#VueX-引申内容" class="headerlink" title="VueX 引申内容"></a>VueX 引申内容</h2><h3 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h3><ul>
+<li><code>概念：</code>在严格模式下会深度监测所有状态，凡是引起状态改变的动作不是来自于 mutation 都会报错</li>
+<li><code>启用：</code>在 store 创建时传入`strict：true</li>
+<li><code>注意事项：</code><br><code>严格模式下的表单处理：</code>当用 input 去绑定 vuex 中的状态时由于改变不是有 mutation 处理的所以会报错，要解决此这个问题一般来说 给 input 绑定 change 事件，在对应函数中使用 commit 提交<br>或者绑定一个计算属性使用 get 方法获取状态使用 set 方法更改状态`</li>
 </ul>
-<h4 id="��������-VueX-��Ӧ�ĸ���󣬽�������Ӧ�u���ʵս�ˣ�������ʱ��L����Ჹ��һƪ����-VueX-��ʹ�����飬�����ڴ�"><a href="#��������-VueX-��Ӧ�ĸ���󣬽�������Ӧ�u���ʵս�ˣ�������ʱ��L����Ჹ��һƪ����-VueX-��ʹ�����飬�����ڴ�" class="headerlink" title="�������� VueX ��Ӧ�ĸ���󣬽�������Ӧ�ü���ʵս�ˣ�������ʱ��Ļ����Ჹ��һƪ���� VueX ��ʹ�����飬�����ڴ�"></a>�������� VueX ��Ӧ�ĸ���󣬽�������Ӧ�ü���ʵս�ˣ�������ʱ��Ļ����Ჹ��һƪ���� VueX ��ʹ�����飬�����ڴ�</h4>]]></content>
+<h4 id="在理解了-VueX-相应的概念后，接下来就应该加入实战了，后面有时间的话还会补充一篇关于-VueX-的使用详情，敬请期待"><a href="#在理解了-VueX-相应的概念后，接下来就应该加入实战了，后面有时间的话还会补充一篇关于-VueX-的使用详情，敬请期待" class="headerlink" title="在理解了 VueX 相应的概念后，接下来就应该加入实战了，后面有时间的话还会补充一篇关于 VueX 的使用详情，敬请期待"></a>在理解了 VueX 相应的概念后，接下来就应该加入实战了，后面有时间的话还会补充一篇关于 VueX 的使用详情，敬请期待</h4>]]></content>
       <categories>
-        <category>Webǰ��</category>
+        <category>Web前端</category>
       </categories>
       <tags>
         <tag>Vue</tag>
         <tag>VueX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript全解:JavaScript部分(一)数据类型、运算符、作用域、预解析</title>
+    <url>/2020/03/20/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%B8%80)%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%A2%84%E8%A7%A3%E6%9E%90/</url>
+    <content><![CDATA[<p><img src="/2020/03/20/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%B8%80)%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%A2%84%E8%A7%A3%E6%9E%90/web.png" alt></p>
+<h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h1 id="导读"><a href="#导读" class="headerlink" title="导读"></a>导读</h1><blockquote>
+<p>前言：学习任何新东西前都最好对其有一个系统化的了解，以便构建合理完整的知识体系，学习JS也一样对它有一个整体的认知之后学习起来才能事半功倍</p>
+</blockquote>
+<p><strong>JavaScript结构</strong></p>
+<p><img src="/2020/03/20/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%B8%80)%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E3%80%81%E8%BF%90%E7%AE%97%E7%AC%A6%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E3%80%81%E9%A2%84%E8%A7%A3%E6%9E%90/js%E7%BB%84%E6%88%90.jpg" alt></p>
+<p>参考上面结构能很明显的知道有三部分组成(也可以认为是两部分，Dom可以认为被包含在Bom内)：</p>
+<a id="more"></a>
+
+<ol>
+<li><p><strong>ECMAScript</strong></p>
+<p>这是JavaScript的核心，不过它仅仅是一个概念，它定义了该脚本语言的所有属性，方法和对象，比如语法、类型、语句、关键字、保留字、运算符、对象等内容，每一个浏览器厂商都有各自的 ECMAScript 接口实现，然后这个实现又被扩展，也包含了 DOM 和 BOM。</p>
+</li>
+<li><p><strong>DOM</strong></p>
+<p>DOM（<em>Document Object Model 文档对象模型</em>）是 HTML 和 XML 的应用程序接口（API）。DOM 将把整个页面规划成由节点层级构成的文档。HTML 或 XML 页面的每个部分都是一个节点的衍生物。DOM 通过创建树来表示文档，浏览器 动过DOM树来解释和执行对应的操作，也就是我们说的渲染节点，同时也提供了一系列的API让我们去操作节点。</p>
+</li>
+<li><p><strong>BOM</strong></p>
+<p>BOM(<em>Browser Object Model浏览器对象模型</em> )可以对浏览器窗口进行访问和操作，使用 BOM提供的API开发者可以对浏览器进行操作实现类似于：移动窗口、改变状态栏中的文本以及执行其他与页面内容不直接相关的动作。但是由于没有相关的 BOM 标准，每个浏览器厂商对于其实现也会有部分不一样。</p>
+</li>
+</ol>
+<p>该篇只介绍第一部分也就是JavaScript的基础语法</p>
+<h1 id="JavaScript-1"><a href="#JavaScript-1" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ol>
+<li><p>简单数据类型性：</p>
+<blockquote>
+<p>也叫值类型，对应的数据会直接存放在栈里面，赋值的时候直接把对应的值复制过去</p>
+</blockquote>
+<ul>
+<li><p>Number(数字类型):放的是一切数字整数，浮点型等</p>
+<blockquote>
+<p>数字类型会存在三个特殊值</p>
+<ol>
+<li>infinity：无穷大，大于任何一个数</li>
+<li>-infinity：无穷小，小于任何一个数</li>
+<li>NaN：Not a Number 不是一个数字(在运算时可能出现)可以用isNaN判断</li>
+</ol>
+</blockquote>
+</li>
+<li><p>String(字符串类型)：单个字符或者字符串，在<code>‘’或者“”</code>内的所有内容都被认为是字符串</p>
+<blockquote>
+<p><code>\</code>这个是转义符用来将某些特殊字符转义成字符串</p>
+<p><code>&#39;\n&#39;</code>:换行</p>
+<p><code>&#39;\t&#39;</code>z制表符…</p>
+</blockquote>
+</li>
+<li><p>Boolean(布尔值):只有true和false两种，表示是或非</p>
+<blockquote>
+<p>Boolean值存在能够和其他类型相互转换的情况eg：</p>
+<p>Boolean(0):false;Boolean(5):true;Boolean(‘’):false;Boolean(‘a’):true;Boolean(null):false</p>
+</blockquote>
+</li>
+<li><p>Undefined(定义未赋值):变量被声明但未被赋值的时候，此时该声明获得的一个默认数据类型</p>
+<blockquote>
+<p>undefined+1(NAN),undefined+’a’(undefineda)undefined+true(NAN)</p>
+</blockquote>
+</li>
+<li><p>null(空)：变量被声明且被赋值，只是赋值为空</p>
+<blockquote>
+<p>null+1(1),null+’a’(nulla),null+true(1)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>复杂类型：</p>
+<blockquote>
+<p>也叫做引用类型，引用类型的值存在堆内存当中，在使用时栈里面存放的是一个对真实地址的引用一般用16进制表示。所以简单赋值(浅拷贝)的时候仅仅只是新建了一个对于同一块内容的引用而已</p>
+</blockquote>
+<ul>
+<li><p>Object(对象)</p>
+<p>实际上只有这一个类型，其他的一切复杂类型(Array,Set,Map…)都是对Object的实例或者拓展而已</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
+<li><p>算数运算符：+，-，*，/，%</p>
+</li>
+<li><p>前、后置预算符：</p>
+<ul>
+<li><code>++a</code>前置预算:先自增1后返回<code>var a=1 console.log(++a)//2 a=2</code></li>
+<li><code>a++</code>后置预算:先自增1后返回<code>var a=1 console.log(a++)//1 a=2</code></li>
+</ul>
+</li>
+<li><p>比较运算符：判断符号两边表达式是否符合预算的语义，返回true或false<code>&gt;,&lt;,&lt;=,&gt;=,==</code></p>
+<blockquote>
+<p>===,!==：全等因为js会有隐式转换，该运算符会比较两边的值和类型是否相同</p>
+<p>Object.is():ES6新增方法，弥补===的问题+0===-0//true等</p>
+</blockquote>
+</li>
+<li><p>逻辑运算符：构建判断表达式返回true或false</p>
+<ol>
+<li><p>&amp;&amp;(与)：两侧都符合返回true</p>
+</li>
+<li><p>||(或)：两侧有一侧符合返回true</p>
+</li>
+<li><p>！(非)：返回表达式布尔值的相反值</p>
+<blockquote>
+<p>短路逻辑运算参与运算(两边都是值)：</p>
+<p>a&amp;&amp;b：当a为真返回b,当a为假返回a <code>console.log(1&amp;&amp;2)//2 console.log(0&amp;&amp;2)//0</code></p>
+<p>a||b：当a为真返回a,当a为假返回b <code>console.log(1||2)//1 console.log(0||2)//2</code></p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><ol>
+<li>关键字命名：<code>function name(){}</code></li>
+<li>表达式命名(匿名函数):<code>var fn=function(){}</code></li>
+</ol>
+<h3 id="参数对象"><a href="#参数对象" class="headerlink" title="参数对象"></a>参数对象</h3><p> arguments是所有函数默认的内置对象，里面存放了调用函数时接收的所有对象</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><blockquote>
+<p>是一块独立的区域，该区域内的所有变量，函数等都只能在该区域内使用，外部无法访问。两个作用域互不影响，也无法联通</p>
+</blockquote>
+<ul>
+<li><p>全局作用域：    整个<code>&lt;script/&gt;</code>标签内或者一个单个js文件内</p>
+</li>
+<li><p>局部作用域(函数作用域)：在一个特殊范围内起效果，如函数内部</p>
+</li>
+</ul>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><ul>
+<li><p>全部变量:全局作用域内声明的变量，浏览器关闭时被销毁</p>
+</li>
+<li><p>局部变量:局部作用域内声明的变量，函数调用结束时被销毁</p>
+</li>
+<li><p>自由变量:局部作用域内未声明的变量，直接未被赋值时会被视为全局作用域内的变量</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> num1=<span class="number">10</span></span><br><span class="line">    num2=<span class="number">20</span><span class="comment">//自由变量</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(num1)<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(num2)<span class="comment">//20</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><ul>
+<li><p>概念：在js 中有一个最大的全局作用域，在该作用域下的会有若干单个或嵌套的局部作用域，在某一个局部作用域可以访问其父级作用域内的所有内容，而父级作用域又可以访问包含它的父级作用域内的所有内容，一直到全局作用域。这种层层传递的层级关系叫做作用域链</p>
+</li>
+<li><p>作用域取值：(就近原则)在函数执行需要使用某个变量时会先从内部作用域开始查找，若有就使用。若没有往父级作用域查找一直到查找到全局作用域</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a=<span class="number">1</span></span><br><span class="line">    <span class="keyword">var</span> b=<span class="number">2</span></span><br><span class="line">    fn2();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> a=<span class="number">3</span></span><br><span class="line">        fn3()</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">fn3</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> a=<span class="number">4</span></span><br><span class="line">            <span class="built_in">console</span>.log(a)</span><br><span class="line">            <span class="built_in">console</span>.log(b)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fn1();<span class="comment">//a=4,b=2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h2><p>js是一门解释型语言，js引擎在执行时会有两个过程：预解析和执行代码</p>
+<h3 id="变量提升和函数提升"><a href="#变量提升和函数提升" class="headerlink" title="变量提升和函数提升"></a>变量提升和函数提升</h3><p>在js预解析时会把作用域内的所有变量声明放到该作用域最前面,但是不会提升赋值操作</p>
+<blockquote>
+<p>下例以变量为例，函数类似</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> num1=<span class="number">1</span>           </span><br><span class="line"><span class="built_in">console</span>.log(num1)<span class="comment">//1</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">var num1,num1=1,</span></span><br><span class="line"><span class="comment">console.log(num1)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="built_in">console</span>.log(num2)<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">var</span> num2=<span class="number">2</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">var num2</span></span><br><span class="line"><span class="comment">console.log(num1)</span></span><br><span class="line"><span class="comment">num2=2</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">fn1()<span class="comment">//报错</span></span><br><span class="line"><span class="keyword">var</span> fn1=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">3</span>)&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">var fn1</span></span><br><span class="line"><span class="comment">console.log(fn1)</span></span><br><span class="line"><span class="comment">fn1=function ()&#123;console.log(3)&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript全解</tag>
+        <tag>JS</tag>
       </tags>
   </entry>
 </search>
