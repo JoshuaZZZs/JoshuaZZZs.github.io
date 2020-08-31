@@ -1051,4 +1051,559 @@ eturn value;
         <tag>JS</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JavaScript全解:JavaScript部分(二)对象、原型、继承</title>
+    <url>/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/</url>
+    <content><![CDATA[<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/web.png" alt></p>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><blockquote>
+<p>用来描述一系列的特征(属性)和方法(行为)的无序集合称为对象</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="字面量创建对象"><a href="#字面量创建对象" class="headerlink" title="字面量创建对象"></a>字面量创建对象</h3><ul>
+<li>创建：<code>let obj={name:&#39;a&#39;,eat(){console.log(&#39;eat&#39;)}}</code>在<code>{}</code>之间的所有内容都属于obj这个对象，存放变量，函数等以键值对的形式存在</li>
+<li>调用：<ul>
+<li>属性调用：1.<code>obj.xxx</code>2.<code>obj[xxx]</code></li>
+<li>方法调用<code>obj.xxx</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="new关键字创建对象"><a href="#new关键字创建对象" class="headerlink" title="new关键字创建对象"></a>new关键字创建对象</h3><ul>
+<li>创建 <code>let obj=new Object(),obj.name=&#39;1&#39;</code></li>
+<li>调用：同字面量</li>
+</ul>
+<!-- more ->
+
+### 构造函数创建对象
+
+> 将多个对象公共的属性和方法抽象出来并封装到一个特殊的函数中，这个函数就叫做构造函数
+
+- 创建：
+
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Object</span>(<span class="params">arguments</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.属性=属性值</span><br><span class="line">    <span class="keyword">this</span>.方法=方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>调用</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name</span><br><span class="line">    <span class="keyword">this</span>.age=age</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.eat=funnction ()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'eat'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">'a'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="comment">//创建了一个名为p1的对象，创建时将特定的参数化传递到构造函数通过new关键词即可创建一个特殊对象</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构造函数和对象区别</p>
+<ul>
+<li>构造函数：一个概念，只存放了一系列的抽象的属性和行为的结合</li>
+<li>对象：一个具体的事务，有具体的属性和行为，是构造函数的一个实例</li>
+</ul>
+</li>
+</ul>
+<h3 id="class创建对象"><a href="#class创建对象" class="headerlink" title="class创建对象"></a>class创建对象</h3><blockquote>
+<p>用class创建对象 实际上就是构造函数创建，以往构造函数的赋值操作变成了constructor里面，挂载在其原型上的方法可以直接写在构造函数外面，所以class只是一个让构造函数更加清晰，可读性更强的语法糖而已</p>
+</blockquote>
+<ul>
+<li><p>创建</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name,age)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name</span><br><span class="line">        <span class="keyword">this</span>.age=age</span><br><span class="line">    &#125;</span><br><span class="line">    eat()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'eat'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用(和构造函数使用类似)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1=<span class="keyword">new</span> Person(<span class="string">'a'</span>,<span class="number">12</span>)</span><br><span class="line">p1.name<span class="comment">///a</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="new-如何创建了一个新对象"><a href="#new-如何创建了一个新对象" class="headerlink" title="new 如何创建了一个新对象"></a>new 如何创建了一个新对象</h3><ol>
+<li><p>开辟出一个新的内存空间(创建一个空对象)</p>
+</li>
+<li><p>将构造函数的显式原型赋值到实例对象的隐式原型中</p>
+</li>
+<li><p>将构造函数的this指向到新对象</p>
+</li>
+<li><p>执行构造函数完成对应操作</p>
+</li>
+<li><p>返回新对象</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> p1=<span class="keyword">new</span> Person(<span class="string">'a'</span>)<span class="comment">//相当于</span></span><br><span class="line"><span class="comment">//let p1 //创建一个</span></span><br><span class="line"><span class="keyword">let</span> p1=(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> newP1=&#123;&#125;</span><br><span class="line">    newP1._proto_=Person.prototype<span class="comment">//获取原型</span></span><br><span class="line">   Person.call(newP1,<span class="string">'a'</span>)<span class="comment">//把当前this传入，并执行构造函数</span></span><br><span class="line">    <span class="keyword">return</span> newP1 <span class="comment">//返回新对象</span></span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><h4 id="什么是原型"><a href="#什么是原型" class="headerlink" title="什么是原型"></a>什么是原型</h4><p>在创建每一个构造函数时我们会定义一系列的公共属性和方法，一个构造函数可以创建N个具有不同内容的对象(实例),但每所有的实例都会具有构造函数所定义的公共属性和方法，这些共有的属性和方法就称之为原型</p>
+<h4 id="显式原型和隐式原型"><a href="#显式原型和隐式原型" class="headerlink" title="显式原型和隐式原型"></a>显式原型和隐式原型</h4><p>先看以下例子</p>
+<img src="JavaScript全解JavaScript部分(二)对象、原型、继承/显、隐式原型.PNG"  />
+
+<p>在Person类中存在<code>prototype</code>属性该属性就是Person的原型，存放了它自己特有的属性和方法。在Person的实例p1中存在<code>_proto_</code>属性，该属性指向了p1的构造函数也就是Person的原型<code>prototype</code>，一般的我们将构造函数中的原型<code>prototype</code>称之为显式原型，将实例中的<code>_proto_</code>称之为隐式原型</p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><p>由上述我们可以知道一下三点</p>
+<ol>
+<li>每一个class(构造函数)都有显式原型<code>prototype</code></li>
+<li>每一个实例对象都有隐式原型<code>_proto_</code></li>
+<li>实例中的隐式原型指向其构造函数的显示原型</li>
+</ol>
+<p>再看以下例子</p>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E9%93%BE.PNG" alt=""></p>
+<blockquote>
+<p>我们调用p1的toString方法，但实例当中没有，去构造函数中查找也没有，再去Person的构造函数Object查找找到了该方法于是调用Object.toString方法。</p>
+</blockquote>
+<p>一般的当我们调用某一个属性或者方法的时候，js会先从当前实例当中查找方法找到调用，找不到通过<code>_proto_</code>查找其构造函数的方法和属性(因为实例的<code>_proto_</code>指向其构造函数的<code>prototype</code>)，若找不到则通过<code>_proto_</code>查找再构造函数的构造函数的方法和属性一直到最外一层位置(Object) 这种层层传递的这种链式结构就叫做原型链</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><blockquote>
+<p>在外面创建实例时，会需要创建属性和实例，而某些属性和实例可能已经被自己或者前人实现过，如果能通过每种方式将那些前人写好的东西继承过来的话会让我们的程序简洁很多。</p>
+</blockquote>
+<h3 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h3><ul>
+<li><p>方法：直接将子类原型指向父类</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name</span><br><span class="line">&#125;</span><br><span class="line">SubA.prototype=<span class="keyword">new</span> A()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题：</p>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%B1%BB%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p>由图可知</p>
+<ol>
+<li>该方式不会支持父类构造函数A有参数的情况</li>
+<li>该方式会把父类的所有内容继承下来哪怕是父类不希望传递的属性list</li>
+</ol>
+</li>
+<li><p>原因：由于通过这个语句<code>SubA.prototype=new A()</code>我们获得了A的一个实例，但是在这个new的时候由于类本身也是个抽象概念，不知道具体实例所以当我们执行A构造函数的时候我们并不知道要给A的构造函数传什么值所以<code>this.name=undefined</code>，(问题1)且我们new A的时候把A的所有属性和原型都指向了<code>prototype</code>所以A中的所有属性方法 对象都会被传递(问题2)</p>
+</li>
+</ul>
+<h3 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h3><ul>
+<li><p>方法：在继承时执行父类的构造函数方法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题：</p>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p>由图可知</p>
+<ol>
+<li>该方式无法获得父类的prototype上的属性</li>
+</ol>
+</li>
+<li><p>原因：当我们执行new SubA的时候<code>A.call...</code>会执行，因此会把name和list拿过来赋值给当前的this也就是SubA但是由于只执行了这一个方法就仅仅相当执行了赋值操作，对父类原型和原型链上的内容无任何处理</p>
+</li>
+</ul>
+<h3 id="组合继承-1"><a href="#组合继承-1" class="headerlink" title="组合继承"></a>组合继承</h3><ul>
+<li><p>方法：类式继承+构造函数继承</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line">SubA.prototype=<span class="keyword">new</span> A()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题：</p>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p>由图可知</p>
+<ol>
+<li>会继承一堆没有用的函数和属性</li>
+</ol>
+</li>
+<li><p>原因：当我们执行new SubA中A.call…`会执行，因此会把name和list拿过来赋值给当前的this也就是SubA，在外面newA的时候又把A中的属性拿了过来</p>
+</li>
+</ul>
+<h3 id="寄生式组合继承"><a href="#寄生式组合继承" class="headerlink" title="寄生式组合继承"></a>寄生式组合继承</h3><ul>
+<li><p>方法：在组合继承的基础上寻找一个干净的中间量只继承原型(寄生)</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SubA.prototype=new A()改造成=&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inhertPrototype</span>(<span class="params">subClass,superClass</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">whippingBoy</span>(<span class="params"></span>)</span>&#123;&#125;;<span class="comment">//被寄生函数</span></span><br><span class="line">    whippingBoy.prototype=superClass.prototype;</span><br><span class="line">    subClass.prototype=<span class="keyword">new</span> whippingBoy();</span><br><span class="line">&#125;</span><br><span class="line">inhertPrototype(SubA,A);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>问题：</p>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p>由图可知</p>
+<ol>
+<li>该方式无法获得父类的prototype上的属性</li>
+</ol>
+</li>
+<li><p>原因：当我们执行new SubA的时候<code>A.call...</code>会执行，因此会把name和list拿过来赋值给当前的this也就是SubA但是由于只执行了这一个方法就仅仅相当执行了赋值操作，对父类原型和原型链上的内容无任何处理</p>
+</li>
+</ul>
+<h3 id="组合继承-2"><a href="#组合继承-2" class="headerlink" title="组合继承"></a>组合继承</h3><ul>
+<li><p>方法：类式继承+构造函数继承</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line">SubA.prototype=<span class="keyword">new</span> A()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结果</p>
+</li>
+</ul>
+<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%AF%84%E7%94%9F.PNG" alt=""></p>
+-->]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript全解</tag>
+        <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript全解:DOM部分</title>
+    <url>/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3BOM%E9%83%A8%E5%88%86/</url>
+    <content><![CDATA[<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3BOM%E9%83%A8%E5%88%86/web.png" alt></p>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h1><h2 id="BOM简介"><a href="#BOM简介" class="headerlink" title="BOM简介"></a>BOM简介</h2><ul>
+<li><p><strong>什么是BOM</strong>:BOM(Broswer Object Model):浏览器对象模型，是来描述浏览器对象之间的层次关系的模型，每个浏览器都有各自的BOM实现，我们用BOM的API来完成浏览器的各种操作</p>
+</li>
+<li><p><strong>BOM组成</strong>:BOM最大的对象是window，里面存放了其他多个对象</p>
+<a id="more"></a>
+
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3BOM%E9%83%A8%E5%88%86/BOM.jpg" alt>核心 1. </p>
+</li>
+</ul>
+<ol>
+<li><p>Location对象：地址对象，存放当前访问的url信息</p>
+</li>
+<li><p>Navigator对象：浏览器对象，存放当前浏览器的一些基础信息</p>
+</li>
+<li><p>Screen对象：屏幕对象，存放当前浏览器页面屏幕的信息</p>
+</li>
+<li><p>history:历史对象，存放浏览器访问页面历史信息</p>
+</li>
+</ol>
+<h2 id="window自带属性和事件"><a href="#window自带属性和事件" class="headerlink" title="window自带属性和事件"></a>window自带属性和事件</h2><ul>
+<li><h3 id="加载-window-onload"><a href="#加载-window-onload" class="headerlink" title="加载(window.onload)"></a>加载(window.onload)</h3><p>页面所有内容加载完成之后执行加载</p>
+<p><strong>与DOMContentLoader的区别</strong></p>
+<p>​    window.onload需要等页面所有内容加载完成后再执行，DOMContentLoader只需要dom对象加载完成后    即可执行</p>
+</li>
+<li><h3 id="窗口变化-window-reseize"><a href="#窗口变化-window-reseize" class="headerlink" title="窗口变化(window.reseize)"></a>窗口变化(window.reseize)</h3><p>窗口页面大小发生变化</p>
+<p>innerWidth:浏览器宽度</p>
+<p>innerHeight：浏览器高度</p>
+</li>
+<li><h3 id="定时器-window-setTimeout-window-setInterval"><a href="#定时器-window-setTimeout-window-setInterval" class="headerlink" title="定时器(window.setTimeout/window.setInterval)"></a>定时器(window.setTimeout/window.setInterval)</h3><ul>
+<li>setTimeout(fn,times)<ul>
+<li>fn：定时器执行函数</li>
+<li>times：定时器延迟时间(毫秒)</li>
+</ul>
+</li>
+<li>setInterval(fn,times)</li>
+<li>异同<ul>
+<li>同：<ol>
+<li>参数内容和意义相同，延时器单位都是毫秒返回定时器的特殊id</li>
+<li>都需要清除定时器</li>
+<li>times都有一个最小间隔时间，不能真的设置为0。H5中为4ms</li>
+<li>都是宏任务，属于异步操作</li>
+</ol>
+</li>
+<li>异<ol>
+<li>setTimeout延迟执行一次，setInterval间隔执行</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="offset、client、scroll"><a href="#offset、client、scroll" class="headerlink" title="offset、client、scroll"></a>offset、client、scroll</h3><blockquote>
+<p>所有系列的内容都是值没有单位的，且都是<strong><font color="red">只读</font></strong>的</p>
+</blockquote>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3BOM%E9%83%A8%E5%88%86/offclient.jpg" alt></p>
+<h4 id="offset-元素偏移量"><a href="#offset-元素偏移量" class="headerlink" title="offset(元素偏移量)"></a>offset(元素偏移量)</h4><blockquote>
+<p>获取当前元素距离第一个带有定位的父元素的位置</p>
+</blockquote>
+<ul>
+<li><strong>offsetTop/offsetLeft</strong>：相对于第一个带有定位的父元素上/左边框方偏移量</li>
+<li><strong>offsetWidth/offsetHeight</strong>：返回元素的宽/高(包含元素所有的margin，padding，content的总和)</li>
+</ul>
+<h4 id="client-可视区偏移"><a href="#client-可视区偏移" class="headerlink" title="client(可视区偏移)"></a>client(可视区偏移)</h4><blockquote>
+<p>获取当前元素距离页面左上角(<strong>document</strong>)的位置偏移</p>
+</blockquote>
+<ul>
+<li><strong>clientTop/clientLeft</strong>：相对于第一个带有定位的父元素上/左边框方偏移量</li>
+<li><strong>clientWidth/clientHeight</strong>：返回当前元素的宽/高(包含元素padding，content的总和<strong><font color="red">不包含margin</font></strong>)</li>
+</ul>
+<h4 id="scroll-实际内容"><a href="#scroll-实际内容" class="headerlink" title="scroll(实际内容)"></a>scroll(实际内容)</h4><blockquote>
+<p>获取当前元素距离实际内容</p>
+</blockquote>
+<ul>
+<li><strong>scrollTop/scrollLeft</strong>：被卷去的内容距离容器上/左边框偏移量</li>
+<li><strong>clientWidth/clientHeight</strong>：返回当前元素的实际宽/高(<strong><font color="red">只包含内容</font></strong>)</li>
+</ul>
+<h4 id="页面整体滚动"><a href="#页面整体滚动" class="headerlink" title="页面整体滚动"></a>页面整体滚动</h4><ul>
+<li><p><strong>pageXOffset</strong>： 返回当前页面相对于窗口显示区左上角的 X 位置。 </p>
+</li>
+<li><p><strong>pageYOffset</strong> ：返回当前页面相对于窗口显示区左上角的 Y 位置。 </p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><h4 id="什么是this"><a href="#什么是this" class="headerlink" title="什么是this"></a>什么是this</h4><p><code>this</code>在js中是一个关键字，是一个指针，指向我们调用函数的对象。</p>
+<h4 id="执行上下文"><a href="#执行上下文" class="headerlink" title="执行上下文"></a>执行上下文</h4><p> 执行上下文 是语言规范中的一个概念，大致等同于函数的执行“环境”。具体的有：变量作用域（和 <em>作用域链条</em>，闭包里面来自外部作用域的变量），函数参数，以及 <code>this</code> 对象的值。</p>
+<h4 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h4><ol>
+<li>在全局作用域或者普通函数中使用时指向的是全局对象(window)</li>
+<li>在方法中谁调用this就指向谁(全局方法的this指向window，setTimeout=&gt;window.setTimeout)</li>
+<li>在构造函数中this指向构造函数的实例</li>
+<li>箭头函数本身没有this对象，函数中this就是父级函数中的this</li>
+</ol>
+<h5 id="修改this指向"><a href="#修改this指向" class="headerlink" title="修改this指向"></a>修改this指向</h5><blockquote>
+<p>调用函数时通过以下方法将执行上下文和对应参数传入，只用传入的指向上下文代替原本的this</p>
+</blockquote>
+<ol>
+<li><p>bind()：不需要执行函数就可以将 <code>this</code> 的值准确设置到你选择的一个对象上。还可以通过逗号隔开传递多个参数，如 <code>func.bind(this, param1, param2, ...)</code> 。</p>
+</li>
+<li><p>apply()：将 <code>this</code> 的值准确设置到你选择的一个对象上。第二个参数是一个数组，数组的每一项是你希望传递给函数的参数。最后执行函数。</p>
+</li>
+<li><p>call()：将 <code>this</code> 的值准确设置到你选择的一个对象上，然后想 <code>bind</code> 一样通过逗号分隔传递多个参数给函数。如：<code>print.call(this, param1, param2, ...)</code>。最后执行函数。</p>
+</li>
+</ol>
+<h2 id="window内置对象"><a href="#window内置对象" class="headerlink" title="window内置对象"></a>window内置对象</h2><h4 id="Location对象"><a href="#Location对象" class="headerlink" title="Location对象"></a>Location对象</h4><blockquote>
+<p>用于设置或获取页面的URL，并可以对其解析</p>
+</blockquote>
+<h4 id="URL-："><a href="#URL-：" class="headerlink" title="** URL**："></a>** URL**：</h4><h4 id="同一资源定位符，是互联网上标准资源的地址"><a href="#同一资源定位符，是互联网上标准资源的地址" class="headerlink" title="同一资源定位符，是互联网上标准资源的地址"></a>同一资源定位符，是互联网上标准资源的地址</h4><p><strong>url组成</strong>：</p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3BOM%E9%83%A8%E5%88%86/URL.jpg" alt></p>
+<ul>
+<li>protocol/schemel 协议，常用的协议是http</li>
+<li>hostname/Domain 主机地址，可以是域名，也可以是IP地址</li>
+<li>port 端口 http协议默认端口是：80端口，如果不写默认就是:80端口</li>
+<li>path 路径 网络资源在服务器中的指定路径</li>
+<li>parameter 参数 如果要向服务器传入参数，在这部分输入</li>
+<li>query 查询字符串 如果需要从服务器那里查询内容，在这里编辑</li>
+<li>fragment 片段 网页中可能会分为不同的片段，如果想访问网页后直接到达指定位置，可以在这部分设置</li>
+</ul>
+<h4 id="Location-属性"><a href="#Location-属性" class="headerlink" title="Location 属性"></a>Location 属性</h4><ul>
+<li><p>hash：保存当前url中的哈希值（url中#号后面的任意个字符），url中不包含哈希值        则返回空串</p>
+</li>
+<li><p>host：保存当前url中的域名和端口号</p>
+</li>
+<li><p>href：获取当前页面所有地址</p>
+</li>
+<li><p>pathName：保存当前url中路径或者文件名</p>
+</li>
+<li><p>port：保存当前url中的端口号</p>
+</li>
+<li><p>protocol：保存当前url使用的协议</p>
+</li>
+<li><p>search：保存url中的查询字符串(?xxx)</p>
+</li>
+<li><p>assign(url):导航到参数url位置并生成一条历史记录（等同与 location.href=url， window.localtion=url)</p>
+</li>
+<li><p>replace(url):导航到参数rul位置但不生成历史记录</p>
+</li>
+<li><p>reload(boolean)：重新加载当前文档，传参true表示强制从服务器加载所有资源</p>
+</li>
+</ul>
+<h3 id="Navigator对象"><a href="#Navigator对象" class="headerlink" title="Navigator对象"></a>Navigator对象</h3><blockquote>
+<p>存储了浏览器的对应信息</p>
+</blockquote>
+<ul>
+<li><p>userAgent：用户代理字符串，通常用来判断当前使用的是什么浏览器</p>
+</li>
+<li><p>plugins：保存安装所有插件信息的数组，用来判断当前用户是否安装了页面所必须的插件，IE无此属性（通过ActiveXobject对象来判断）</p>
+</li>
+</ul>
+<h3 id="History对象"><a href="#History对象" class="headerlink" title="History对象"></a>History对象</h3><blockquote>
+<p>存放当前浏览器浏览历史</p>
+</blockquote>
+<p>length(属性):history对象中的记录总数</p>
+<p>方法：</p>
+<ul>
+<li><p>back()：前往浏览器历史条目中后一个URL，后退</p>
+</li>
+<li><p>forward()：前往浏览器历史条目中前一个URL，前进</p>
+</li>
+<li><p>go(number)： 可加载历史列表中的某个具体的页面，URL 参数使用的是要访问的 URL，或 URL 的子串。而 number 参数使用的是要访问的 URL 在 History 的 URL 列表中的相对位置。    </p>
+</li>
+</ul>
+<h2 id="浏览器存储"><a href="#浏览器存储" class="headerlink" title="浏览器存储　　　　"></a>浏览器存储　　　　</h2><h3 id="cookie："><a href="#cookie：" class="headerlink" title="cookie："></a>cookie：</h3><p>Cookie：是指由服务端生成，发送给客户端（通常是浏览器），为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据（通常经过加密）</p>
+<p><strong>问题</strong>：</p>
+<ol>
+<li><p>Cookie会被附加在每个HTTP请求中，所以无形中增加了流量。</p>
+</li>
+<li><p>由于在HTTP请求中的Cookie是明文传递的，所以安全性成问题。（除非用HTTPS）</p>
+</li>
+<li><p>Cookie的大小限制在4KB左右。对于复杂的存储需求来说是不够用的。</p>
+</li>
+</ol>
+<h3 id="session："><a href="#session：" class="headerlink" title="session："></a>session：</h3><p>Session：由服务端生成，保存在服务器的内存、缓存、硬盘或数据库中的用对象来存储特定用户会话所需的信息。</p>
+<p><strong>问题</strong>：</p>
+<ol>
+<li><p>session会在一定时间内保存在服务器上，当访问增多，会比较占用服务器的性能</p>
+</li>
+<li><p>session不能区分路径，同一个用户在访问一个网站期间，所有的session在任何一个地方都可以访问到</p>
+</li>
+</ol>
+<h2 id="WebStorage（localStorage-sessionStorage"><a href="#WebStorage（localStorage-sessionStorage" class="headerlink" title="WebStorage（localStorage/sessionStorage)"></a>WebStorage（localStorage/sessionStorage)</h2><p>Web Storage的概念和cookie相似，区别是它是为了更大容量存储设计的(5M),以键值对的形式存储数据，并提供了一系列操作数据的方法</p>
+<p><strong>方法</strong>：</p>
+<p><strong>xxx.setItem(key,value),xxx.getItem(key)</strong>：获取/设置WebStorage中的值</p>
+<p><strong>xxx.removeItem(key)</strong>:删除WebStorage的key以及key对应的value</p>
+<p><strong>xxx.clear()</strong>:清空WebStorage中的所有内容</p>
+<p>三者的区别</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">Cookie</th>
+<th align="left">localStorage</th>
+<th align="left">sessionStorage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">数据的生命期</td>
+<td align="left">可设置失效时间，默认是关闭浏览器后失效</td>
+<td align="left">除非被清除，否则永久保存</td>
+<td align="left">仅在当前会话下有效，关闭页面或浏览器后被清除</td>
+</tr>
+<tr>
+<td align="left">存放数据大小</td>
+<td align="left">4K左右</td>
+<td align="left">一般为5MB</td>
+<td align="left">一般为5MB</td>
+</tr>
+<tr>
+<td align="left">与服务器端通信</td>
+<td align="left">每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
+<td align="left">仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+<td align="left">仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
+</tr>
+<tr>
+<td align="left">易用性</td>
+<td align="left">需要程序员自己封装，源生的Cookie接口不友好</td>
+<td align="left">源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+<td align="left">源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript全解</tag>
+        <tag>HTML</tag>
+        <tag>BOM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript全解:DOM部分</title>
+    <url>/2020/04/20/JavaScript%E5%85%A8%E8%A7%A3DOM%E9%83%A8%E5%88%86/</url>
+    <content><![CDATA[<p><img src="/2020/04/20/JavaScript%E5%85%A8%E8%A7%A3DOM%E9%83%A8%E5%88%86/web.png" alt></p>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="DOM简介"><a href="#DOM简介" class="headerlink" title="DOM简介"></a>DOM简介</h2><ul>
+<li><p><strong>什么是DOM</strong>:DOM(Document Object Model):文档对象模型，它是由W3C推荐的处理可扩展标记语言(XML,HTML)的标准<strong>编程接口</strong>。</p>
+</li>
+<li><p><strong>DOM组成</strong>:DOM被W3C分成了三个部分/层级</p>
+<ol>
+<li>核心 DOM 用于任何结构化文档的标准模型</li>
+<li>XML DOM 用于 XML 文档的标准模型</li>
+<li>HTML DOM用于 HTML 文档的标准模型</li>
+</ol>
+<blockquote>
+<p>本文记录的均是HTML的DOM标准</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="DOM组成"><a href="#DOM组成" class="headerlink" title="DOM组成"></a>DOM组成</h2><blockquote>
+<p>在浏览器中每一个页面加载都会被转化成一个文档对象(document),页面上的所有展示内容都由该文档按照层级解析而来这种结构关系也叫做DOM树(DOM数据结构)</p>
+</blockquote>
+<p><img src="/2020/04/20/JavaScript%E5%85%A8%E8%A7%A3DOM%E9%83%A8%E5%88%86/DOM%E6%A0%91.jpg" alt></p>
+<ul>
+<li>文档：每一个页面就是一个文档，DOM中用document表示，包含了该页面的所有内容</li>
+<li>元素：页面中的有标签，用element表示</li>
+<li>节点：网页汇总的所有内容区块(标签，属性，注释等)，用node表示</li>
+<li>事件：页面中发生的所有不同的具有交互效果的行为(点击，键盘输入)等</li>
+</ul>
+<blockquote>
+<p>以上四个内容都可以当做对象来看，也就是常说的组成DOM四大对象</p>
+</blockquote>
+<h2 id="页面中的Document和Element对象"><a href="#页面中的Document和Element对象" class="headerlink" title="页面中的Document和Element对象"></a>页面中的Document和Element对象</h2><ul>
+<li><p><strong>获取节点</strong> <em>页面中document，element都提供了来对页面中的元素进行一系列的操作包括(获取、增加、删除等)</em></p>
+<ul>
+<li><p>获取页面元素getELementByxxx</p>
+<ul>
+<li>通过id获取<code>getELementById(‘id’)</code>内容是大小写敏感的字符串，下同，返回一个符合要求的元素对象</li>
+<li>通过className获取<code>getELementByClassName(‘className’)</code>返回符合要求的伪数组</li>
+<li>通过标签名获取<code>getELementByTagName(‘tag’)</code>返回符合要求的伪数组</li>
+<li>通过选择器获取<code>querySelector(选择器)</code>返回第一个符合要求元素对象，<code>querySelectorAll(选择器)</code>返回所有符合要求元素对象集合</li>
+</ul>
+</li>
+<li><p>获取页面中的body和html</p>
+<ul>
+<li>body：<code>document.body</code></li>
+<li>html：<code>document.documentElement</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Dom节点操作"><a href="#Dom节点操作" class="headerlink" title="Dom节点操作"></a>Dom节点操作</h3><ul>
+<li><p>操作节点的两种方式</p>
+<ul>
+<li>Attribute：用getAttribute来获取特殊的属性值，用setAttribute来设置元素属性，removeAttribute删除属性(可以增删取原本元素不存在的属性即自定义属性)，修改的是对应标签内容</li>
+<li>Prototype：用js的方式获取元素自带属性(width,id等)，直接用element.xx获取，修改的是节点的js对象</li>
+</ul>
+</li>
+<li><p>节点操作的API</p>
+<ul>
+<li><p>创建元素:</p>
+<ul>
+<li>document.write</li>
+<li>innerHTML</li>
+<li>createElement</li>
+</ul>
+</li>
+<li><p>插入：xx.appendChild(节点)在后面追加节点 xx.insertBefore在前面插入节点</p>
+</li>
+<li><p>获取父元素：xx.parentNode</p>
+</li>
+<li><p>获取子元素：xx.childNodes/xx.children</p>
+</li>
+<li><p>获取第一个和最后一个子元素：</p>
+<ul>
+<li>xx.firstChild/xx.lastChild:返回对应节点可能会包含文本节点</li>
+<li>xx.firstElementChild/xx.lastElementChild</li>
+</ul>
+</li>
+<li><p>获取上一个和下一个兄弟节点：xx.perviousSibling/xx.nextSibling</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DOM性能优化"><a href="#DOM性能优化" class="headerlink" title="DOM性能优化"></a>DOM性能优化</h3><ul>
+<li><p>缓存DOM：将需要频繁获取内容先用对象缓存起来，使用时直接使用对象</p>
+</li>
+<li><p>合并操作：将频繁操作合并成一次性操作</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//假设向页面的ul中插入100个li</span></span><br><span class="line"><span class="keyword">const</span> listNode=<span class="built_in">document</span>.getElementById(<span class="string">'list'</span>)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">传统方法</span></span><br><span class="line"><span class="comment">引发了100次的DOM重新渲染</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> li=<span class="built_in">document</span>.creatElement(<span class="string">'li'</span>)</span><br><span class="line">    li.innerElement=<span class="string">`List item <span class="subst">$&#123;i&#125;</span>`</span></span><br><span class="line">    listNode.appendChild(li)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">改进方法 创建一个代码片段</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">//创建一个代码片段 这是一个游离的区域并不在DOM中</span></span><br><span class="line"><span class="keyword">let</span> freg=<span class="built_in">document</span>.creatDocumentFragment()</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">let</span> li=<span class="built_in">document</span>.creatElement(<span class="string">'li'</span>)</span><br><span class="line">    li.innerElement=<span class="string">`List item <span class="subst">$&#123;i&#125;</span>`</span></span><br><span class="line">    freg.appendChild(li)</span><br><span class="line">    <span class="comment">// 将所有操作都缓存进该区域</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//真正执行插入操作，只引发1次DOM重新渲染</span></span><br><span class="line">listNode.appendChild(frag)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="事件要素"><a href="#事件要素" class="headerlink" title="事件要素"></a>事件要素</h3><ol>
+<li><p>事件源：事件触发对象</p>
+<ol start="2">
+<li>事件类型：事件交互类型</li>
+<li>事件处理函数：事件处理程序</li>
+</ol>
+</li>
+</ol>
+<h3 id="事件注册"><a href="#事件注册" class="headerlink" title="事件注册"></a>事件注册</h3><h4 id="传统方式"><a href="#传统方式" class="headerlink" title="传统方式"></a>传统方式</h4><ul>
+<li>方式：事件源.onXxx/<code>&lt;button onClick=&#39;xxx&#39;&gt;</code></li>
+<li>事件唯一，前面事件函数会被覆盖注册的事件函数所覆盖，只会执行最后一次注册的函数</li>
+</ul>
+<h4 id="方法监听"><a href="#方法监听" class="headerlink" title="方法监听"></a>方法监听</h4><ul>
+<li><p>方式：xxx.addEventListener(type,listener,useCapture)</p>
+<ul>
+<li>type:事件类型的字符串，click，mousemove等</li>
+<li>listener：事件处理函数</li>
+<li>useCapture(可选，默认false)：事件触发方式true捕获阶段触发，false事件冒泡阶段触发</li>
+</ul>
+</li>
+<li><p>事件不唯一，按照事件注册顺序执行</p>
+</li>
+</ul>
+<h3 id="事件删除"><a href="#事件删除" class="headerlink" title="事件删除"></a>事件删除</h3><h4 id="传统"><a href="#传统" class="headerlink" title="传统"></a>传统</h4><p>xxx.onXXX=null</p>
+<h4 id="方法监听-1"><a href="#方法监听-1" class="headerlink" title="方法监听"></a>方法监听</h4><p>xxx.removeEventListener(type,function)</p>
+<ul>
+<li>type:：类型</li>
+<li>function：处理事件名称</li>
+</ul>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><blockquote>
+<p>事件流是描述页面接收事件的顺序，当事件发生时会在元素节点之间按照特定的顺序传播，这个过程叫DOM事件流</p>
+</blockquote>
+<h4 id="事件流过程"><a href="#事件流过程" class="headerlink" title="事件流过程"></a>事件流过程</h4><p><img src="/2020/04/20/JavaScript%E5%85%A8%E8%A7%A3DOM%E9%83%A8%E5%88%86/%E4%BA%8B%E4%BB%B6%E6%B5%81.jpg" alt></p>
+<ol>
+<li>捕获阶段：从最外层document阶段开始向子节点依次传递事件</li>
+<li>当前目标阶段：触发事件的最具体元素</li>
+<li>冒泡阶段：从最开始触发事件的那个元素开始向父元素依次传播事件</li>
+</ol>
+<h4 id="事件对象-event"><a href="#事件对象-event" class="headerlink" title="事件对象(event)"></a>事件对象(event)</h4><blockquote>
+<p>每一个事件上注册的函数都会带有一个默认的参数，里面包含了该事件一系列的相关内容</p>
+</blockquote>
+<ul>
+<li>e.target:最初始事件触发的对象</li>
+<li>e.type:事件的类型</li>
+<li>e.preventDefault：阻止默认事件</li>
+<li>e.stopPropagation:阻止事件冒泡</li>
+<li>e.currentTarget:当前绑定的捕获事件对象</li>
+</ul>
+<h4 id="事件委托-事件代理"><a href="#事件委托-事件代理" class="headerlink" title="事件委托(事件代理)"></a>事件委托(事件代理)</h4><blockquote>
+<p>利用事件的冒泡机制将众多相同内容不同数据的子元素处理事件移植到父元素中，在父元素中进行统一处理</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"ul"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//在一个ul中每次点击li获取对应的数据</span></span></span><br><span class="line">        /*</span><br><span class="line">        传统方式给每一个li绑定事件</span><br><span class="line">        */</span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> li = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'li'</span>)</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">for</span> (<span class="keyword">const</span> i of li) &#123;</span></span><br><span class="line"><span class="actionscript">            i.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                <span class="keyword">if</span> (e.target.nodeName === <span class="string">'LI'</span>) &#123;</span></span><br><span class="line">                    alert(e.target.innerText)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"><span class="actionscript">        <span class="comment">//事件委托 通过冒泡机制在父元素节点ul中统一处理</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> ul = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>);</span></span><br><span class="line"><span class="actionscript">        ul.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">if</span> (e.target.nodeName === <span class="string">'LI'</span>) &#123;</span></span><br><span class="line">                alert(e.target.innerText)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>JavaScript全解</tag>
+        <tag>DOM</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
 </search>
