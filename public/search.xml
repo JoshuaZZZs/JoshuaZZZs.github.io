@@ -1058,8 +1058,6 @@ eturn value;
 <h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><blockquote>
 <p>用来描述一系列的特征(属性)和方法(行为)的无序集合称为对象</p>
 </blockquote>
-<a id="more"></a>
-
 <h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="字面量创建对象"><a href="#字面量创建对象" class="headerlink" title="字面量创建对象"></a>字面量创建对象</h3><ul>
 <li>创建：<code>let obj={name:&#39;a&#39;,eat(){console.log(&#39;eat&#39;)}}</code>在<code>{}</code>之间的所有内容都属于obj这个对象，存放变量，函数等以键值对的形式存在</li>
 <li>调用：<ul>
@@ -1072,17 +1070,15 @@ eturn value;
 <li>创建 <code>let obj=new Object(),obj.name=&#39;1&#39;</code></li>
 <li>调用：同字面量</li>
 </ul>
-<!-- more ->
+<a id="more"></a>
 
-### 构造函数创建对象
-
-> 将多个对象公共的属性和方法抽象出来并封装到一个特殊的函数中，这个函数就叫做构造函数
-
-- 创建：
-
-  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Object</span>(<span class="params">arguments</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.属性=属性值</span><br><span class="line">    <span class="keyword">this</span>.方法=方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h3 id="构造函数创建对象"><a href="#构造函数创建对象" class="headerlink" title="构造函数创建对象"></a>构造函数创建对象</h3><blockquote>
+<p>将多个对象公共的属性和方法抽象出来并封装到一个特殊的函数中，这个函数就叫做构造函数</p>
+</blockquote>
 <ul>
+<li><p>创建：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Object</span>(<span class="params">arguments</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.属性=属性值</span><br><span class="line">    <span class="keyword">this</span>.方法=方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>调用</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name</span><br><span class="line">    <span class="keyword">this</span>.age=age</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.eat=funnction ()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'eat'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1=<span class="keyword">new</span> Person(<span class="string">'a'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="comment">//创建了一个名为p1的对象，创建时将特定的参数化传递到构造函数通过new关键词即可创建一个特殊对象</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -1121,7 +1117,7 @@ eturn value;
 </ol>
 <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><h3 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h3><h4 id="什么是原型"><a href="#什么是原型" class="headerlink" title="什么是原型"></a>什么是原型</h4><p>在创建每一个构造函数时我们会定义一系列的公共属性和方法，一个构造函数可以创建N个具有不同内容的对象(实例),但每所有的实例都会具有构造函数所定义的公共属性和方法，这些共有的属性和方法就称之为原型</p>
 <h4 id="显式原型和隐式原型"><a href="#显式原型和隐式原型" class="headerlink" title="显式原型和隐式原型"></a>显式原型和隐式原型</h4><p>先看以下例子</p>
-<img src="JavaScript全解JavaScript部分(二)对象、原型、继承/显、隐式原型.PNG"  />
+<img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/显、隐式原型.PNG">
 
 <p>在Person类中存在<code>prototype</code>属性该属性就是Person的原型，存放了它自己特有的属性和方法。在Person的实例p1中存在<code>_proto_</code>属性，该属性指向了p1的构造函数也就是Person的原型<code>prototype</code>，一般的我们将构造函数中的原型<code>prototype</code>称之为显式原型，将实例中的<code>_proto_</code>称之为隐式原型</p>
 <h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><p>由上述我们可以知道一下三点</p>
@@ -1131,7 +1127,7 @@ eturn value;
 <li>实例中的隐式原型指向其构造函数的显示原型</li>
 </ol>
 <p>再看以下例子</p>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E9%93%BE.PNG" alt=""></p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E9%93%BE.PNG" alt></p>
 <blockquote>
 <p>我们调用p1的toString方法，但实例当中没有，去构造函数中查找也没有，再去Person的构造函数Object查找找到了该方法于是调用Object.toString方法。</p>
 </blockquote>
@@ -1144,7 +1140,7 @@ eturn value;
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name</span><br><span class="line">&#125;</span><br><span class="line">SubA.prototype=<span class="keyword">new</span> A()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>问题：</p>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%B1%BB%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%B1%BB%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt></p>
 <p>由图可知</p>
 <ol>
 <li>该方式不会支持父类构造函数A有参数的情况</li>
@@ -1159,7 +1155,7 @@ eturn value;
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>问题：</p>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt></p>
 <p>由图可知</p>
 <ol>
 <li>该方式无法获得父类的prototype上的属性</li>
@@ -1173,7 +1169,7 @@ eturn value;
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line">SubA.prototype=<span class="keyword">new</span> A()</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>问题：</p>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E7%BB%84%E5%90%88%E5%BC%8F%E7%BB%A7%E6%89%BF.PNG" alt></p>
 <p>由图可知</p>
 <ol>
 <li>会继承一堆没有用的函数和属性</li>
@@ -1187,7 +1183,7 @@ eturn value;
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="keyword">this</span>.list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">&#125;</span><br><span class="line">A.prototype.getName=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.name)&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubA</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    A.call(<span class="keyword">this</span>,name);</span><br><span class="line">    <span class="keyword">this</span>.subName=<span class="string">'sub'</span>+<span class="keyword">this</span>.name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//SubA.prototype=new A()改造成=&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inhertPrototype</span>(<span class="params">subClass,superClass</span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">whippingBoy</span>(<span class="params"></span>)</span>&#123;&#125;;<span class="comment">//被寄生函数</span></span><br><span class="line">    whippingBoy.prototype=superClass.prototype;</span><br><span class="line">    subClass.prototype=<span class="keyword">new</span> whippingBoy();</span><br><span class="line">&#125;</span><br><span class="line">inhertPrototype(SubA,A);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>问题：</p>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt=""></p>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%BB%A7%E6%89%BF.PNG" alt></p>
 <p>由图可知</p>
 <ol>
 <li>该方式无法获得父类的prototype上的属性</li>
@@ -1203,8 +1199,8 @@ eturn value;
 <li><p>结果</p>
 </li>
 </ul>
-<p><img src="JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%AF%84%E7%94%9F.PNG" alt=""></p>
--->]]></content>
+<p><img src="/2020/05/15/JavaScript%E5%85%A8%E8%A7%A3JavaScript%E9%83%A8%E5%88%86(%E4%BA%8C)%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E7%BB%A7%E6%89%BF/%E5%AF%84%E7%94%9F.PNG" alt></p>
+]]></content>
       <categories>
         <category>web前端</category>
       </categories>
